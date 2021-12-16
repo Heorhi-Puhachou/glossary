@@ -1,20 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { StyleSelector } from './style-selector';
 
 function List(props) {
   return (
     <ol>{props.items}</ol>
-  );
-}
-
-function StyleSelector(props) {
-  return (
-    <div className="styles" onChange={props.onChangeStyle}>
-      <input type="radio" value="be-tarask" name="gender" checked={props.style === 'be-tarask'} /> be-tarask
-      <input type="radio" value="be-1959acad" name="gender" /> be-1959acad
-      <input type="radio" value="lacinka" name="gender" /> lacinka
-    </div>
   );
 }
 
@@ -25,8 +16,9 @@ class Game extends React.Component {
       filteredGlosses: [],
       style: 'be-tarask',
     };
+  }
 
-    //Us effect move it! component dead mount
+  componentDidMount() {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
       .then((jsonData) => {
@@ -39,20 +31,15 @@ class Game extends React.Component {
   }
 
   handleChangeX(event) {
-    if (this.state.glosses) {
-      const filteredGlosses = this.state.glosses.filter(chekContain);
+    const filteredGlosses = this.state.glosses.filter(chekContain);
 
-      function chekContain(value) {
-        return value.originalValue.includes(event.target.value);
-      }
-
-      this.setState({
-        filteredGlosses: filteredGlosses,
-      });
+    function chekContain(value) {
+      return value.originalValue.includes(event.target.value);
     }
 
-    console.log(this.state.filteredGlosses);
-
+    this.setState({
+      filteredGlosses: filteredGlosses,
+    });
   }
 
   onChangeStyle(event) {
