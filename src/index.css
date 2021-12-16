@@ -1,0 +1,57 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+ol, ul {
+    padding-left: 30px;
+}
+
+.board-row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.styles {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.input {
+
+    margin: 0 auto;
+    width: 80%;
+}
+
+.square:focus {
+    outline: none;
+}
+
+.kbd-navigation .square:focus {
+    background: #ddd;
+}
+
+.three-rows {
+    width: 80%;
+    display: inline-block;
+
+}
+
+.records {
+    margin: 0 auto;
+}
+
+.orig{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.value{
+    font-weight: bold;
+}
+
+.wrong{
+   color: red;
+    text-decoration: line-through;
+}
