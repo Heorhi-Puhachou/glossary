@@ -70,12 +70,12 @@ class Game extends React.Component {
     });
 
     return (
-      <div className="three-rows">
-        <div className="input">
+      <div id="outer" className="three-rows">
+        <div id="inner" className="input">
           <input type="text" value={this.state.value} onChange={i => this.handleChangeX(i)} />
         </div>
         <StyleSelector style={this.state.style} onChangeStyle={event => this.onChangeStyle(event)} />
-        <div className="records">
+        <div id="inner-l" className="records">
           <List items={records} />
         </div>
       </div>
