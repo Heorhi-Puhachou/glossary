@@ -2,17 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { StyleSelector } from './style-selector';
-import { Record } from './record';
 import * as constants from './constant';
-
-function List(props) {
-  return (
-    <ol>{props.items}</ol>
-  );
-}
+import { List } from './list-of-records';
 
 function Glossary() {
-
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
   const [style, setStyle] = useState(constants.TARASK_TAG);
@@ -26,8 +19,6 @@ function Glossary() {
       });
   }, []);
 
-  const records = filteredGlosses.map((item) => Record(item, style));
-
   return (
     <div id="outer" className="three-rows">
       <div id="inner" className="input">
@@ -37,13 +28,11 @@ function Glossary() {
       </div>
       <StyleSelector style={style} onChangeStyle={event => setStyle(event.target.value)} />
       <div id="inner-l" className="records">
-        <List items={records} />
+        <List filteredGlosses={filteredGlosses} style={style} />
       </div>
     </div>
   );
 }
-
-// ========================================
 
 ReactDOM.render(
   <Glossary />,
