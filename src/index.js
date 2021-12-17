@@ -19,14 +19,18 @@ function Glossary() {
       });
   }, []);
 
+  const onFilterChange = value => {
+    setFilteredGlosses(
+      glosses.filter(
+        item => item.originalValue.includes(value.target.value)));
+  };
+
   return (
     <div id="outer" className="three-rows">
       <div id="inner" className="input">
-        <input type="text" onChange={value => {
-          setFilteredGlosses(glosses.filter(item => item.originalValue.includes(value.target.value)));
-        }} />
+        <input type="text" onChange={onFilterChange} />
       </div>
-      <StyleSelector style={style} onChangeStyle={event => setStyle(event.target.value)} />
+      <StyleSelector style={style} setStyle={setStyle} />
       <div id="inner-l" className="records">
         <List filteredGlosses={filteredGlosses} style={style} />
       </div>

@@ -2,7 +2,7 @@ import * as constants from './constant';
 
 export function StyleSelector(props) {
   return (
-    <div className="styles" onChange={props.onChangeStyle}>
+    <div className="styles" onChange={event => props.setStyle(event.target.value)}>
       <input type="radio" value={constants.TARASK_TAG} name="style"
              checked={props.style === constants.TARASK_TAG} />{constants.TARASK_TAG}
       <input class="stub" />
