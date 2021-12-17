@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { StyleSelector } from './style-selector';
-import * as constants from './constant';
+import { TARASK_TAG } from './constant';
 import { List } from './list-of-records';
 
 function Glossary() {
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
-  const [style, setStyle] = useState(constants.TARASK_TAG);
+  const [style, setStyle] = useState(TARASK_TAG);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
