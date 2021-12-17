@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { StyleSelector } from './style-selector';
+import { Record } from './record';
+import * as constants from './constant';
 
 function List(props) {
   return (
@@ -9,83 +11,41 @@ function List(props) {
   );
 }
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredGlosses: [],
-      style: 'be-tarask',
-    };
-  }
+function Glossary() {
 
-  componentDidMount() {
+  const [filteredGlosses, setFilteredGlosses] = useState([]);
+  const [glosses, setGlosses] = useState([]);
+  const [style, setStyle] = useState(constants.TARASK_TAG);
+
+  useEffect(() => {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
-      .then((jsonData) => {
-        this.state.glosses = jsonData;
-      })
-      .catch((error) => {
-        // handle your errors here
-        console.error(error);
+      .then(jsonData => {
+        setGlosses(jsonData);
+        setFilteredGlosses(jsonData);
       });
-  }
+  }, []);
 
-  handleChangeX(event) {
-    const filteredGlosses = this.state.glosses.filter(chekContain);
+  const records = filteredGlosses.map((item) => Record(item, style));
 
-    function chekContain(value) {
-      return value.originalValue.includes(event.target.value);
-    }
-
-    this.setState({
-      filteredGlosses: filteredGlosses,
-    });
-  }
-
-  onChangeStyle(event) {
-    this.setState({
-      style: event.target.value,
-    });
-    console.log(event.target.value);
-  }
-
-  render() {
-    const records = this.state.filteredGlosses.map((item) => {
-      let renderValue;
-      if (this.state.style === 'lacinka') {
-        renderValue = item.lacinka;
-      } else if (this.state.style === 'be-tarask') {
-        renderValue = item.tarask;
-      } else {
-        renderValue = item.acad;
-      }
-      return (
-        <li key={item.id}>
-          <div className="orig">{item.originalValue}</div>
-          <div className="value">{renderValue.value}</div>
-          <div className="wrong">{renderValue.wrong}</div>
-          <div className="comment">{renderValue.comment}</div>
-        </li>
-      );
-    });
-
-    return (
-      <div id="outer" className="three-rows">
-        <div id="inner" className="input">
-          <input type="text" value={this.state.value} onChange={i => this.handleChangeX(i)} />
-        </div>
-        <StyleSelector style={this.state.style} onChangeStyle={event => this.onChangeStyle(event)} />
-        <div id="inner-l" className="records">
-          <List items={records} />
-        </div>
+  return (
+    <div id="outer" className="three-rows">
+      <div id="inner" className="input">
+        <input type="text" onChange={value => {
+          setFilteredGlosses(glosses.filter(item => item.originalValue.includes(value.target.value)));
+        }} />
       </div>
-    );
-  }
+      <StyleSelector style={style} onChangeStyle={event => setStyle(event.target.value)} />
+      <div id="inner-l" className="records">
+        <List items={records} />
+      </div>
+    </div>
+  );
 }
 
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <Glossary />,
   document.getElementById('root'),
 );
