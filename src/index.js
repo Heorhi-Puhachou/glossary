@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { StyleSelector } from './style-selector';
+import { StyleSelector } from './StyleSelector';
 import { TARASK_TAG } from './constant';
-import { List } from './list-of-records';
+import { RecordsBlock } from './RecordsBlock';
 
 function Glossary() {
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
   const [style, setStyle] = useState(TARASK_TAG);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
@@ -20,6 +21,7 @@ function Glossary() {
   }, []);
 
   const onFilterChange = value => {
+    setCurrentPage(1);
     setFilteredGlosses(
       glosses.filter(
         item => item.originalValue.includes(value.target.value)));
@@ -32,7 +34,8 @@ function Glossary() {
       </div>
       <StyleSelector style={style} setStyle={setStyle} />
       <div id="inner-l" className="records">
-        <List filteredGlosses={filteredGlosses} style={style} />
+        <RecordsBlock filteredGlosses={filteredGlosses} style={style} countPerPage={4} currentPage={currentPage}
+                      setCurrentPage={setCurrentPage} />
       </div>
     </div>
   );
