@@ -13,30 +13,11 @@ ol, ul {
     display: table;
 }
 
-.styles {
-    padding-top: 15px;
-    margin: 0 auto;
-    width: 100%;
-    font-size: 14px;
-}
 
 .input {
 
     margin: 0 auto;
     width: 50%;
-}
-
-input[type=text] {
-    font-size:22px;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 13px;
-}
-
-input {
-    text-align: center;
 }
 
 .kbd-navigation .square:focus {
@@ -55,21 +36,21 @@ input {
     margin: 0 auto;
 }
 
-.rad{
+.rad {
     padding-right: 327px;
 }
 
-.orig{
+.orig {
     margin-top: 10px;
     font-weight: bold;
 }
 
-.value{
+.value {
     font-weight: bold;
 }
 
-.wrong{
-   color: red;
+.wrong {
+    color: red;
     text-decoration: line-through;
 }
 
@@ -83,8 +64,3 @@ input {
     text-align: left;
 }
 
-
-.stub{
-   width: 15px;
-    visibility: hidden;
-}

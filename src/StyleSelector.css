@@ -1,0 +1,19 @@
+.style-selector {
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+}
+
+input[type=text] {
+    font-size:22px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+input {
+    text-align: center;
+}

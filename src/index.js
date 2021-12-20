@@ -1,45 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { StyleSelector } from './StyleSelector';
-import { TARASK_TAG } from './constant';
-import { RecordsBlock } from './RecordsBlock';
-
-function Glossary() {
-  const [filteredGlosses, setFilteredGlosses] = useState([]);
-  const [glosses, setGlosses] = useState([]);
-  const [style, setStyle] = useState(TARASK_TAG);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
-      .then(response => response.json())
-      .then(jsonData => {
-        setGlosses(jsonData);
-        setFilteredGlosses(jsonData);
-      });
-  }, []);
-
-  const onFilterChange = value => {
-    setCurrentPage(1);
-    setFilteredGlosses(
-      glosses.filter(
-        item => item.originalValue.includes(value.target.value)));
-  };
-
-  return (
-    <div id="outer" className="three-rows">
-      <div id="inner" className="input">
-        <input type="text" onChange={onFilterChange} />
-      </div>
-      <StyleSelector style={style} setStyle={setStyle} />
-      <div id="inner-l" className="records">
-        <RecordsBlock filteredGlosses={filteredGlosses} style={style} countPerPage={4} currentPage={currentPage}
-                      setCurrentPage={setCurrentPage} />
-      </div>
-    </div>
-  );
-}
+import Glossary from './Glossary';
 
 ReactDOM.render(
   <Glossary />,

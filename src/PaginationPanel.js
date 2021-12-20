@@ -1,6 +1,8 @@
+import Card from './Card';
+
 export function PaginationPanel(props) {
   return (
-    <div>
+    <Card>
       <button disabled={props.currentPage === 1} onClick={() => props.setCurrentPage(props.currentPage - 1)}>
         Папярэдняя
       </button>
@@ -8,6 +10,6 @@ export function PaginationPanel(props) {
       <button disabled={props.currentPage === props.pages} onClick={() => props.setCurrentPage(props.currentPage + 1)}>
         Наступная
       </button>
-    </div>
+    </Card>
   );
 }
