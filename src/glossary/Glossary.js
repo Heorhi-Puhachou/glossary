@@ -29,7 +29,7 @@ function Glossary() {
   };
 
   return (
-    <div>
+    <div className="tab-block">
       <SearchPanel style={style}
                    setStyle={setStyle}
                    filterGlosses={filterGlosses}
