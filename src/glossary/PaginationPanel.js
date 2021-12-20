@@ -1,4 +1,4 @@
-import Card from './Card';
+import Card from '../base/Card';
 
 export function PaginationPanel(props) {
   return (

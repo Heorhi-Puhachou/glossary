@@ -1,4 +1,4 @@
-import * as constants from './constant';
+import * as constants from '../base/constant';
 import './StyleSelector.css';
 
 export function StyleSelector(props) {

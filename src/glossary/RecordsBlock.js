@@ -1,6 +1,6 @@
 import { Record } from './Record';
 import { PaginationPanel } from './PaginationPanel';
-import Card from './Card';
+import Card from '../base/Card';
 
 export function RecordsBlock(props) {
 

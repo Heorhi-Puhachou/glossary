@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TARASK_TAG } from './constant';
+import { TARASK_TAG } from '../base/constant';
 import SearchPanel from './SearchPanel';
 import { RecordsBlock } from './RecordsBlock';
 
@@ -30,9 +30,14 @@ function Glossary() {
 
   return (
     <div>
-      <SearchPanel style={style} setStyle={setStyle} filterGlosses={filterGlosses}
+      <SearchPanel style={style}
+                   setStyle={setStyle}
+                   filterGlosses={filterGlosses}
                    resetCurrentPage={resetCurrentPage} />
-      <RecordsBlock filteredGlosses={filteredGlosses} style={style} countPerPage={4} currentPage={currentPage}
+      <RecordsBlock filteredGlosses={filteredGlosses}
+                    style={style}
+                    countPerPage={4}
+                    currentPage={currentPage}
                     setCurrentPage={setCurrentPage} />
     </div>
   );
