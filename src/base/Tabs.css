@@ -1,6 +1,7 @@
 .tab-content {
     color: white;
     height: 100%;
+    display: flex;
 }
 
 .tabs {

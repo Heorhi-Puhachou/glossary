@@ -1,7 +1,7 @@
 body {
     background-color: rgb(51, 51, 51);
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 
 }
 
@@ -17,13 +17,16 @@ html, body {
 .tab-block {
     padding: 10px;
     height: 100%;
+    width: 100%;
 }
 
 .title {
     background: white;
-    text-align: center;
     font-size: 30px;
     height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tabs-panel {

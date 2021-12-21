@@ -35,7 +35,6 @@ class Tabs extends Component {
       <div className="tabs">
         <div className="tab-list">
           <div className="tab-stub">
-            <div className="tab-label-wrapper"></div>
           </div>
           {children.map((child) => {
             const { label } = child.props;
