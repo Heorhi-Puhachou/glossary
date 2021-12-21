@@ -1,9 +1,16 @@
 body {
+    height: 100%;
     margin: 0px;
     padding: 0px;
+
+}
+
+html, body, #root {
+    height: 100%
 }
 
 
 .tab-block {
     padding: 10px;
+    height: 100%;
 }

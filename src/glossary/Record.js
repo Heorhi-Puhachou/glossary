@@ -1,5 +1,7 @@
 import * as constants from '../base/constant';
 import React from 'react';
+import Card from '../base/Card';
+import './Record.css';
 
 export function Record(item, style) {
   let renderValue;
@@ -11,11 +13,10 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <li key={item.id}>
-      <div className="orig">{item.originalValue}</div>
-      <div className="value">{renderValue.value}</div>
+    <Card className="record">
+      <div className="orig">{item.originalValue + ' - ' + renderValue.value}</div>
       <div className="wrong">{renderValue.wrong}</div>
       <div className="comment">{renderValue.comment}</div>
-    </li>
+    </Card>
   );
 }

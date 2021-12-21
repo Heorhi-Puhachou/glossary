@@ -11,9 +11,9 @@ export function RecordsBlock(props) {
     + (props.filteredGlosses.length % props.countPerPage > 0 ? 1 : 0);
   return (
     <div>
-      <Card>
-        <ol>{props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.style))}</ol>
-      </Card>
+
+      {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.style))}
+
       <PaginationPanel currentPage={props.currentPage} pages={pages} setCurrentPage={props.setCurrentPage} />
     </div>
   )

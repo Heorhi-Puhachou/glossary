@@ -3,10 +3,11 @@ import Glossary from '../glossary/Glossary';
 import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
+import Converter from '../converter/Converter';
 
 function Base() {
-  return (<div>
-    <h1>Таварыства беларускіх перакладчыкаў</h1>
+  return (<div  id='base'>
+    <h1>Таварыства перакладчыкаў (ТП)</h1>
     <Tabs>
       <div label="Гласарый">
         <Glossary />
@@ -16,6 +17,9 @@ function Base() {
       </div>
       <div label="Карысныя спасылкі">
         <LinksPage />
+      </div>
+      <div label="Канвертар">
+        <Converter />
       </div>
     </Tabs>
   </div>);

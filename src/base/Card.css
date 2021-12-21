@@ -4,4 +4,9 @@
     background-color: #4b4b4b;
     font-family: 'Noto Sans JP', sans-serif;
     color: white;
+    padding: 2px;
+}
+
+.out-card {
+    padding: 2px;
 }
