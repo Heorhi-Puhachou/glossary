@@ -1,6 +1,6 @@
 import { Record } from './Record';
 import { PaginationPanel } from './PaginationPanel';
-import Card from '../base/Card';
+import './RecordsBlock.css';
 
 export function RecordsBlock(props) {
 
@@ -11,9 +11,9 @@ export function RecordsBlock(props) {
     + (props.filteredGlosses.length % props.countPerPage > 0 ? 1 : 0);
   return (
     <div>
-
-      {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.style))}
-
+      <div className="records">
+        {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.style))}
+      </div>
       <PaginationPanel currentPage={props.currentPage} pages={pages} setCurrentPage={props.setCurrentPage} />
     </div>
   )

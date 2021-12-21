@@ -1,16 +1,31 @@
 body {
-    height: 100%;
+    background-color: rgb(31, 31, 31);
     margin: 0px;
     padding: 0px;
 
 }
 
-html, body, #root {
+html, body {
     height: 100%
+}
+
+#root, #base {
+    height: 100%;
 }
 
 
 .tab-block {
     padding: 10px;
     height: 100%;
+}
+
+.title {
+    background: white;
+    text-align: center;
+    font-size: 30px;
+    height: 10%;
+}
+
+.tabs-panel {
+    height: 90%;
 }
