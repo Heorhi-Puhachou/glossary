@@ -7,7 +7,7 @@ import Converter from '../converter/Converter';
 
 function Base() {
   return (<div id="base">
-    <div className="title">Таварыства перакладчыкаў (ТП)</div>
+    <div className="title">Таварыства перакладчыкаў</div>
     <div className="tabs-panel">
       <Tabs>
         <div label="Гласарый">

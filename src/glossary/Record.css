@@ -1,3 +1,11 @@
 .record {
+height: 20%;
+}
 
+.record-wrapper{
+    padding: 5px;
+}
+
+.wrong{
+    color: red;
 }

@@ -1,6 +1,7 @@
 import Card from '../base/Card';
 import { StyleSelector } from './StyleSelector';
 import React from 'react';
+import "./SearchPanel.css"
 
 function SearchPanel(props) {
 
@@ -9,7 +10,7 @@ function SearchPanel(props) {
     props.filterGlosses(value);
   };
 
-  return <Card>
+  return <Card className="search-glossary">
     <div id="inner" className="input">
       <input type="text" onChange={onFilterChange} />
     </div>

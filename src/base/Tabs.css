@@ -1,8 +1,8 @@
 .tab-content {
-    background-color: rgb(31, 31, 31);
     color: white;
+    height: 100%;
 }
 
-.tabs{
+.tabs {
     height: 90%;
 }

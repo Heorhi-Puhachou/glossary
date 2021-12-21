@@ -10,7 +10,7 @@ export function RecordsBlock(props) {
   const pages = Math.floor(props.filteredGlosses.length / props.countPerPage)
     + (props.filteredGlosses.length % props.countPerPage > 0 ? 1 : 0);
   return (
-    <div>
+    <div className="records-block">
       <div className="records">
         {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.style))}
       </div>

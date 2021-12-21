@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import narTarConvert from './NarTarConverter';
-import tarNarConvert from './TarNarConverter';
+import narTarConvert from './logic/NarTarConverter';
+import tarNarConvert from './logic/TarNarConverter';
 import './Converter.css';
 
 function Converter() {

@@ -29,12 +29,11 @@ class Tab extends Component {
     }
 
     return (
-      <li
-        className={className}
-        onClick={onClick}
-      >
-        {label}
-      </li>
+      <div className={className} onClick={onClick}>
+        <div className="tab-label-wrapper">
+          {label}
+        </div>
+      </div>
     );
   }
 }

@@ -14,9 +14,11 @@ export function Record(item, style) {
   }
   return (
     <Card key={item.id} className="record">
+      <div className="record-wrapper">
       <div className="orig">{item.originalValue + ' - ' + renderValue.value}</div>
       <div className="wrong">{renderValue.wrong}</div>
       <div className="comment">{renderValue.comment}</div>
+      </div>
     </Card>
   );
 }

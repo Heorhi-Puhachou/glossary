@@ -1,4 +1,9 @@
 .records {
     padding-top: 10px;
     padding-bottom: 10px;
+    height: 70%;
+}
+
+.records-block {
+    height: 85%;
 }
