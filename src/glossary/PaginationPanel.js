@@ -5,6 +5,7 @@ export function PaginationPanel(props) {
   return (
     <Card>
       <table>
+        <tbody>
         <tr>
           <td>
             <button disabled={props.currentPage === 1} onClick={() => props.setCurrentPage(props.currentPage - 1)}>
@@ -21,9 +22,8 @@ export function PaginationPanel(props) {
             </button>
           </td>
         </tr>
+        </tbody>
       </table>
-
-
     </Card>
   );
 }

@@ -13,7 +13,7 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <Card className="record">
+    <Card key={item.id} className="record">
       <div className="orig">{item.originalValue + ' - ' + renderValue.value}</div>
       <div className="wrong">{renderValue.wrong}</div>
       <div className="comment">{renderValue.comment}</div>
