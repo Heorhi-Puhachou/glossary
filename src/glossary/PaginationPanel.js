@@ -1,22 +1,24 @@
-import Card from '../base/Card';
 import './PaginationPanel.css';
 
 export function PaginationPanel(props) {
+  const pagesCount = Math.floor(props.filteredGlosses.length / props.countPerPage)
+    + (props.filteredGlosses.length % props.countPerPage > 0 ? 1 : 0);
+
   return (
-    <Card className="pagination-card">
+    <div className="pagination-card">
       <button className="pagination-button"
               disabled={props.currentPage === 1}
               onClick={() => props.setCurrentPage(props.currentPage - 1)}>
-        Папярэдняя
+        ←
       </button>
       <div className="pagination-text">
-        {'Старонка ' + props.currentPage + ' з ' + props.pages}
+        {'ст. ' + props.currentPage + ' з ' + pagesCount}
       </div>
       <button className="pagination-button"
-              disabled={props.currentPage === props.pages}
+              disabled={props.currentPage === pagesCount}
               onClick={() => props.setCurrentPage(props.currentPage + 1)}>
-        Наступная
+        →
       </button>
-    </Card>
+    </div>
   );
 }

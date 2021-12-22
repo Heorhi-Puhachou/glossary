@@ -13,12 +13,12 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <Card key={item.id} className="record">
-      <div className="record-wrapper">
-      <div className="orig">{item.originalValue + ' - ' + renderValue.value}</div>
-      <div className="wrong">{renderValue.wrong}</div>
-      <div className="comment">{renderValue.comment}</div>
+    <div key={item.id} className="record">
+      <div className="record-info">
+        <div className="text-wrapper">
+          {item.originalValue + ' - ' + renderValue.value}
+        </div>
       </div>
-    </Card>
+    </div>
   );
 }

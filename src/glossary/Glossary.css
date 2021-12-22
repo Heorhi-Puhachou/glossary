@@ -1,0 +1,15 @@
+.filter input[type=text] {
+    width: 100%;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.pagination-panel {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -2,6 +2,12 @@
     width: 100%;
 }
 
+.mode-selector {
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+
 textarea {
     width: 100%;
     height: 150px;
@@ -33,13 +39,14 @@ textarea {
 }
 
 button {
-    width: 20%;
+    width: 100%;
     border-radius: 12px;
 }
 
 .converter-textarea {
-    display: inline-block;
-    width: 42.5%;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .text-stub {

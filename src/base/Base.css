@@ -15,20 +15,31 @@ html, body {
 
 
 .tab-block {
-    padding: 10px;
     height: 100%;
     width: 100%;
 }
 
 .title {
     background: white;
-    font-size: 30px;
-    height: 10%;
+    font-size: 18px;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.style {
+    height: 5%;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .tabs-panel {
-    height: 90%;
+    height: 89%;
+}
+
+.tab-content {
+    height: 82%;
 }

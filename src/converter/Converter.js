@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import narTarConvert from './logic/NarTarConverter';
-import tarNarConvert from './logic/TarNarConverter';
+
 import './Converter.css';
 import * as constants from '../base/constant';
 import { NAR_TAR_MODE } from '../base/constant';
 import Card from '../base/Card';
+import tarNarConvert from './logic/TarNarConverter';
 
 function Converter() {
 
@@ -29,29 +30,31 @@ function Converter() {
       </Card>
 
       <div className="converter-mode">
-        <div className="mode-selector" onChange={event => setMode(event.target.value)}>
-          <input type="radio" value={constants.TAR_NAR_MODE} name="mode"
+        <div className="mode-selector">
+          <input type="radio" onClick={() => {setMode(constants.TAR_NAR_MODE);}}
+                 value={constants.TAR_NAR_MODE} name="mode"
                  defaultChecked={true} />be-tarask => be-acad1959
-          <input type="radio" value={constants.NARKAM_TAG} name="mode"
+        </div>
+        <div className="mode-selector">
+          <input type="radio" onClick={() => {setMode(constants.NAR_TAR_MODE);}}
+                 value={constants.NARKAM_TAG} name="mode"
                  defaultChecked={false} />be-acad1959 => be-tarask
         </div>
+
       </div>
 
-      <Card className="converter-text">
-        <div className="text-stub" />
-        <div className="converter-textarea">
+
+      <div className="converter-textarea">
             <textarea placeholder="увядзіце тэкст для канвэртацыі" value={input}
                       onChange={value => setInput(value.target.value)} />
-        </div>
-        <div className="text-stub" />
-        <div className="converter-textarea">
-          <textarea placeholder="тут зьявяцца вынікі канвэртацыі" value={output} />
-        </div>
-        <div className="text-stub" />
-      </Card>
+      </div>
+
+      <div className="converter-textarea">
+        <textarea placeholder="тут зьявяцца вынікі канвэртацыі" value={output} />
+      </div>
 
       <div className="converter-button">
-        <button onClick={() => convert()}>
+        <button onClick={convert}>
           Канвэртацыя
         </button>
       </div>

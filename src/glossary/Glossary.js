@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { TARASK_TAG } from '../base/constant';
-import SearchPanel from './SearchPanel';
 import { RecordsBlock } from './RecordsBlock';
+import './Glossary.css';
+import { PaginationPanel } from './PaginationPanel';
+import SearchPanel from './SearchPanel';
 
-function Glossary() {
+function Glossary(props) {
+  const countPerPage = 4;
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
-  const [style, setStyle] = useState(TARASK_TAG);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -23,22 +24,32 @@ function Glossary() {
   };
 
   const filterGlosses = value => {
+    console.log(1);
     setFilteredGlosses(
       glosses.filter(
-        item => item.originalValue.includes(value.target.value)));
+        item => item.originalValue.includes(value)));
+    console.log(2);
+  };
+
+  const onFilterChange = event => {
+    filterGlosses(event.target.value);
+    resetCurrentPage();
   };
 
   return (
-    <div className="tab-block">
-      <SearchPanel style={style}
-                   setStyle={setStyle}
-                   filterGlosses={filterGlosses}
-                   resetCurrentPage={resetCurrentPage} />
+    <div className="tab-content">
+      <SearchPanel onFilterChange={onFilterChange} />
       <RecordsBlock filteredGlosses={filteredGlosses}
-                    style={style}
-                    countPerPage={4}
+                    style={props.style}
+                    countPerPage={countPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage} />
+      <div className="pagination-panel">
+        <PaginationPanel filteredGlosses={filteredGlosses}
+                         countPerPage={countPerPage}
+                         currentPage={currentPage}
+                         setCurrentPage={setCurrentPage} />
+      </div>
     </div>
   );
 }
