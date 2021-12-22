@@ -1,7 +1,7 @@
 import Card from '../base/Card';
 import { StyleSelector } from './StyleSelector';
 import React from 'react';
-import "./SearchPanel.css"
+import './SearchPanel.css';
 
 function SearchPanel(props) {
 
@@ -12,7 +12,7 @@ function SearchPanel(props) {
 
   return <Card className="search-glossary">
     <div id="inner" className="input">
-      <input type="text" onChange={onFilterChange} />
+      <input type="text" onChange={onFilterChange} placeholder="увядзіце анг. тэрмін" />
     </div>
     <StyleSelector style={props.style} setStyle={props.setStyle} />
   </Card>;
