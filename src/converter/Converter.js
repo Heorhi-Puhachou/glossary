@@ -3,8 +3,7 @@ import narTarConvert from './logic/NarTarConverter';
 import tarNarConvert from './logic/TarNarConverter';
 import './Converter.css';
 import * as constants from '../base/constant';
-import { TAR_NAR_MODE } from '../base/constant';
-import TarNarConverter from './logic/TarNarConverter';
+import { NAR_TAR_MODE } from '../base/constant';
 import Card from '../base/Card';
 
 function Converter() {
@@ -14,13 +13,14 @@ function Converter() {
   const [mode, setMode] = useState();
 
   function convert() {
-    if (mode === TAR_NAR_MODE) {
-      setOutput(tarNarConvert(input));
-    } else {
+    if (mode === NAR_TAR_MODE) {
       setOutput(narTarConvert(input));
+    } else {
+      setOutput(tarNarConvert(input));
     }
   }
 
+//TODO separate to small components
   return (
     <div className="base-con-panel">
 
@@ -38,18 +38,16 @@ function Converter() {
       </div>
 
       <Card className="converter-text">
-        <div className="text-stub"></div>
+        <div className="text-stub" />
         <div className="converter-textarea">
             <textarea placeholder="увядзіце тэкст для канвэртацыі" value={input}
                       onChange={value => setInput(value.target.value)} />
         </div>
-        <div className="text-stub"></div>
+        <div className="text-stub" />
         <div className="converter-textarea">
           <textarea placeholder="тут зьявяцца вынікі канвэртацыі" value={output} />
         </div>
-        <div className="text-stub"></div>
-
-
+        <div className="text-stub" />
       </Card>
 
       <div className="converter-button">
@@ -57,7 +55,6 @@ function Converter() {
           Канвэртацыя
         </button>
       </div>
-
 
     </div>
   );
