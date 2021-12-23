@@ -44,12 +44,9 @@ function Glossary(props) {
                     countPerPage={countPerPage}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage} />
-      <div className="pagination-panel">
-        <PaginationPanel filteredGlosses={filteredGlosses}
-                         countPerPage={countPerPage}
-                         currentPage={currentPage}
-                         setCurrentPage={setCurrentPage} />
-      </div>
+      <PaginationPanel filteredGlosses={filteredGlosses}
+                       countPerPage={countPerPage}
+                       currentPage={currentPage} />
     </div>
   );
 }
