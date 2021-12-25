@@ -12,7 +12,7 @@ function TabList(props) {
         if (tabName === props.activeTabName) {
           classes = classes + ' tab-list-active';
         }
-        return <div className={classes} onClick={() => props.onChangeActiveTab(tabName)}>
+        return <div key={tabName} className={classes} onClick={() => props.onChangeActiveTab(tabName)}>
           <div className="tab-text-wrapper">
             {tabName}
           </div>
