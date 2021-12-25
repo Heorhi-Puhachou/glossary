@@ -27,12 +27,12 @@ function Glossary(props) {
     console.log(1);
     setFilteredGlosses(
       glosses.filter(
-        item => item.originalValue.includes(value)));
+        item => item.originalValue.toLowerCase().includes(value.toLowerCase())));
     console.log(2);
   };
 
-  const onFilterChange = event => {
-    filterGlosses(event.target.value);
+  const onFilterChange = value => {
+    filterGlosses(value);
     resetCurrentPage();
   };
 
@@ -42,11 +42,11 @@ function Glossary(props) {
       <RecordsBlock filteredGlosses={filteredGlosses}
                     style={props.style}
                     countPerPage={countPerPage}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage} />
+                    currentPage={currentPage}/>
       <PaginationPanel filteredGlosses={filteredGlosses}
                        countPerPage={countPerPage}
-                       currentPage={currentPage} />
+                       currentPage={currentPage}
+                       setCurrentPage={setCurrentPage} />
     </div>
   );
 }

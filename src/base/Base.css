@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(51, 51, 51);
+    background-color: rgb(51, 45, 45);
     margin: 0;
     padding: 0;
 
@@ -22,20 +22,21 @@ html, body {
 }
 
 .title {
-    background: white;
-    font-size: 18px;
+    background: #efeaea;
     height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #1b1b2b;
 }
 
 .style {
     height: 5%;
-    background: white;
+    background: #efeaea;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #1b1b2b;
 }
 
 .tabs-panel {
@@ -44,4 +45,16 @@ html, body {
 
 .tab-content {
     height: 82%;
+}
+
+@media (min-width: 901px) {
+    .title {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 17px;
+    }
 }

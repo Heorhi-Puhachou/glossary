@@ -9,15 +9,28 @@
 .record-info {
     width: 90%;
     height: 90%;
-    background-color: #4b4b4b;
+    background-color: #2b2b2b;
     border-radius: 12px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .text-wrapper {
     width: 90%;
     height: 80%;
-    color: white;
+    color: #dddddd;
     display: flex;
     margin: 0 auto;
     align-items: center;
+}
+
+@media (min-width: 901px) {
+    .record {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .record {
+        font-size: 15px;
+    }
 }
