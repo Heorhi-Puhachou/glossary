@@ -1,0 +1,28 @@
+@media (min-width: 901px) {
+    .links-page {
+        font-size: 27px;
+    }
+
+    select option {
+        font-size: 27px;
+    }
+
+    select {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 900px) {
+    .links-page {
+        font-size: 17px;
+    }
+
+    select option {
+        font-size: 17px;
+    }
+
+    select {
+        font-size: 17px;
+    }
+
+}

@@ -19,6 +19,7 @@
     width: 90%;
     height: 80%;
     color: #dddddd;
+    text-shadow: 3px 3px 3px #101010;
     display: flex;
     margin: 0 auto;
     align-items: center;

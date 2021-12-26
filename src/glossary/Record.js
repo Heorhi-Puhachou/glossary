@@ -1,6 +1,5 @@
 import * as constants from '../base/constant';
 import React from 'react';
-import Card from '../base/Card';
 import './Record.css';
 
 export function Record(item, style) {
