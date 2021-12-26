@@ -1,0 +1,14 @@
+.rules-page{
+    width: 90%;
+    height: 82%;
+    margin: auto;
+}
+
+.select-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    height: 10%;
+}

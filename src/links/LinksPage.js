@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import Option from "./Option";
-import Link from "./Link";
 import LinksBlock from "./LinksBlock";
 import "./LinksPage.css"
 
@@ -34,9 +33,9 @@ function LinksPage() {
     return (
         <div className="links-page">
             <div className="select-block">
-            <select name="select" value={dropdownValue} onChange={onGroupSelected}>
-                {linkGroups.map(group => Option(group.groupName))}
-            </select>
+                <select name="select" value={dropdownValue} onChange={onGroupSelected}>
+                    {linkGroups.map(group => Option(group.groupName))}
+                </select>
             </div>
             <LinksBlock group={selectedGroup}/>
         </div>);

@@ -1,0 +1,17 @@
+.rules-block {
+    width: 100%;
+    margin: auto;
+}
+
+@media (min-width: 901px) {
+    .rules-block {
+        font-size: 27px;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .rules-block {
+        font-size: 17px;
+    }
+}
