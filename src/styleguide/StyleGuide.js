@@ -36,7 +36,9 @@ function StyleGuide() {
                     {ruleGroups.map(group => Option(group.category))}
                 </select>
             </div>
-            <RulesBlock group={selectedGroup}/>
+            <div className="overflow-pane">
+                <RulesBlock group={selectedGroup}/>
+            </div>
         </div>);
 }
 
