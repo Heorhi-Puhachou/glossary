@@ -33,7 +33,7 @@ function Base() {
       <StyleSelector style={style} setStyle={setStyle} />
     </div>
     <div className="title">
-      <div>Таварыства перакладчыкаў</div>
+      <div>Беларускі тэхнічны пераклад</div>
     </div>
     <TabList tabNames={tabNames} activeTabName={activeTab} onChangeActiveTab={onChangeActiveTab} />
     {getContentForTab(activeTab)}
