@@ -5,7 +5,7 @@ const LinksBlock = (props) => {
 
     if (props.group) {
         return (
-            <div>
+            <div className="links-block">
                 {props.group.links.map(link => Link(link.description, link.url))}
             </div>
         );

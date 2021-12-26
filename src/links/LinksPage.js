@@ -33,9 +33,11 @@ function LinksPage() {
 
     return (
         <div className="links-page">
+            <div className="select-block">
             <select name="select" value={dropdownValue} onChange={onGroupSelected}>
                 {linkGroups.map(group => Option(group.groupName))}
             </select>
+            </div>
             <LinksBlock group={selectedGroup}/>
         </div>);
 }

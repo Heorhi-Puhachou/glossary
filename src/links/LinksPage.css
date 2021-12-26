@@ -26,3 +26,29 @@
     }
 
 }
+
+.links-page {
+    width: 90%;
+    height: 82%;
+    margin: auto;
+}
+
+.select-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    height: 10%;
+}
+
+.select-block select {
+    width: 100%;
+    font-size: 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    background-color: #dddddd;
+}
