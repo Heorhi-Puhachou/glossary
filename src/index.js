@@ -1,7 +1,12 @@
 import ReactDOM from 'react-dom';
 import Base from './base/Base';
+import {BrowserRouter} from "react-router-dom";
+import React from "react";
 
 ReactDOM.render(
-  <Base />,
-  document.getElementById('root'),
+    <BrowserRouter>
+        <Base/>
+    </BrowserRouter>
+    ,
+    document.getElementById('root'),
 );

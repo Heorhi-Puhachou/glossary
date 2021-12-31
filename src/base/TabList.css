@@ -14,7 +14,7 @@
     list-style: none;
     height: 100%;
     margin: auto;
-    width: 25%;
+    width: 33.3333%;
     text-align: center;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
@@ -39,24 +39,48 @@
     justify-content: center;
 }
 
+.tab-list-item a:link {
+    color: #dddddd;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.tab-list-item a:visited {
+    color: #dddddd;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.tab-list-item a:hover {
+    color: #dddddd;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.tab-list-item a:active {
+    color: #dddddd;
+    background-color: transparent;
+    text-decoration: none;
+}
+
 @media (min-width: 901px) {
     .tab-list-item {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .tab-list-active {
-        font-size: 24px;
+        font-size: 26px;
     }
 
 }
 
 @media (max-width: 900px) {
     .tab-list-item {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .tab-list-active {
-        font-size: 13px;
+        font-size: 15px;
     }
 
 }
