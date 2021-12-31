@@ -42,6 +42,9 @@ function Base() {
         <Route path='/:style'>
             {tabs[0].element}
         </Route>
+        <Route path='/*'>
+            {tabs[0].element}
+        </Route>
     </div>);
 }
 
