@@ -7,6 +7,7 @@ import React, {useState} from 'react';
 import {TARASK_TAG} from './constant';
 import {StyleSelector} from '../glossary/StyleSelector';
 import TabList from './TabList';
+import Switch from "react-router-dom/es/Switch";
 
 function Base() {
     const [style, setStyle] = useState(TARASK_TAG);
@@ -32,19 +33,21 @@ function Base() {
             <div>Беларускі тэхнічны пераклад</div>
         </div>
         <TabList tabs={tabs} activeTabName={activeTab} onChangeActiveTab={onChangeActiveTab}/>
-        {
-            tabs.map(tab => {
-                return <Route key={tab.name} path={tab.link}>
-                    {tab.element}
-                </Route>
-            })
-        }
-        <Route path='/:style'>
-            {tabs[0].element}
-        </Route>
-        <Route path='/*'>
-            {tabs[0].element}
-        </Route>
+        <Switch>
+            {
+                tabs.map(tab => {
+                    return <Route key={tab.name} path={tab.link}>
+                        {tab.element}
+                    </Route>
+                })
+            }
+            <Route path='/:style'>
+                {tabs[0].element}
+            </Route>
+            <Route path='/*'>
+                {tabs[0].element}
+            </Route>
+        </Switch>
     </div>);
 }
 
