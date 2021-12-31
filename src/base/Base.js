@@ -12,7 +12,7 @@ function Base() {
     const [style, setStyle] = useState(TARASK_TAG);
 
     const tabs = [
-        {name: 'Гласарый', element: <Glossary style={style}/>, link: '/glossary'},
+        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: '/glossary'},
         {name: 'Правілы', element: <StyleGuide/>, link: '/styleguide'},
         {name: 'Спасылкі', element: <LinksPage/>, link: '/linkspage'},
     ];
@@ -34,13 +34,13 @@ function Base() {
         <TabList tabs={tabs} activeTabName={activeTab} onChangeActiveTab={onChangeActiveTab}/>
         {
             tabs.map(tab => {
-                return <Route path={tab.link}>
+                return <Route key={tab.name} path={tab.link}>
                     {tab.element}
                 </Route>
             })
         }
-        <Route path='*'>
-            <Glossary style={style}/>
+        <Route path='/:style'>
+            {tabs[0].element}
         </Route>
     </div>);
 }

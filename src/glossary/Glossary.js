@@ -3,14 +3,24 @@ import { RecordsBlock } from './RecordsBlock';
 import './Glossary.css';
 import { PaginationPanel } from './PaginationPanel';
 import SearchPanel from './SearchPanel';
+import {useParams} from 'react-router-dom';
+import * as constants from '../base/constant';
+
 
 function Glossary(props) {
+  const urlParams = useParams();
   const countPerPage = 4;
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    const styleFromUrl = urlParams.style;
+    if(styleFromUrl === constants.TARASK_TAG
+        || styleFromUrl === constants.NARKAM_TAG
+        || styleFromUrl === constants.LACINK_TAG) {
+      props.setStyle(urlParams.style);
+    }
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
       .then(jsonData => {
