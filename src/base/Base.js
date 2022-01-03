@@ -21,7 +21,7 @@ function Base() {
     };
 
     const tabs = [
-        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: `/${style}/glossary`},
+        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: `/${style}/terms`},
         {name: 'Правілы', element: <StyleGuide/>, link: `/${style}/styleguide`},
         {name: 'Спасылкі', element: <LinksPage/>, link: `/${style}/linkspage`},
     ];
