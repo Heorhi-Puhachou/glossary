@@ -7,7 +7,7 @@ import React, {useState} from 'react';
 import {TARASK_TAG} from './constant';
 import {StyleSelector} from '../glossary/StyleSelector';
 import TabList from './TabList';
-import Switch from "react-router-dom/es/Switch";
+import {Switch} from "react-router-dom";
 
 function Base() {
     const [style, setStyle] = useState(TARASK_TAG);

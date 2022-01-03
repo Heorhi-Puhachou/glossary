@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { RecordsBlock } from './RecordsBlock';
+import React, {useEffect, useState} from 'react';
+import {RecordsBlock} from './RecordsBlock';
 import './Glossary.css';
-import { PaginationPanel } from './PaginationPanel';
+import {PaginationPanel} from './PaginationPanel';
 import SearchPanel from './SearchPanel';
-import {useParams} from 'react-router-dom';
 import * as constants from '../base/constant';
+import {Route, Switch, useParams} from 'react-router-dom';
+import TermPage from "./TermPage";
 
 
 function Glossary(props) {
@@ -48,15 +49,22 @@ function Glossary(props) {
 
   return (
     <div className="tab-content">
-      <SearchPanel onFilterChange={onFilterChange} />
-      <RecordsBlock filteredGlosses={filteredGlosses}
-                    style={props.style}
-                    countPerPage={countPerPage}
-                    currentPage={currentPage}/>
-      <PaginationPanel filteredGlosses={filteredGlosses}
-                       countPerPage={countPerPage}
-                       currentPage={currentPage}
-                       setCurrentPage={setCurrentPage} />
+      <Switch>
+        <Route path='/glossary/terms/:id'>
+          <TermPage/>
+        </Route>
+        <Route path='/*'>
+          <SearchPanel onFilterChange={onFilterChange} />
+          <RecordsBlock filteredGlosses={filteredGlosses}
+                        style={props.style}
+                        countPerPage={countPerPage}
+                        currentPage={currentPage}/>
+          <PaginationPanel filteredGlosses={filteredGlosses}
+                           countPerPage={countPerPage}
+                           currentPage={currentPage}
+                           setCurrentPage={setCurrentPage} />
+        </Route>
+      </Switch>
     </div>
   );
 }

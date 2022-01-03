@@ -1,6 +1,7 @@
 import * as constants from '../base/constant';
 import React from 'react';
 import './Record.css';
+import {Link} from "react-router-dom";
 
 export function Record(item, style) {
   let renderValue;
@@ -12,12 +13,12 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <div key={item.id} className="record">
+    <Link to={'/glossary/terms/'+item.id} key={item.id} className="record">
       <div className="record-info">
         <div className="text-wrapper">
           {item.originalValue + ' - ' + renderValue.value}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
