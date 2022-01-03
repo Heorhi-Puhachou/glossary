@@ -3,31 +3,41 @@ import {RecordsBlock} from './RecordsBlock';
 import './Glossary.css';
 import {PaginationPanel} from './PaginationPanel';
 import SearchPanel from './SearchPanel';
-import * as constants from '../base/constant';
-import {Route, Switch, useParams} from 'react-router-dom';
+import {Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import TermPage from "./TermPage";
 
 
 function Glossary(props) {
-  const urlParams = useParams();
   const countPerPage = 4;
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const filter = queryParams.get('filter') === null?'':queryParams.get('filter');
+  const page = queryParams.get('page') === null ? 1:queryParams.get('page');
+
+  const [currentPage, setCurrentPage] = useState(page);
+  const [filterValue, setFilterValue] = useState(filter);
+
+
 
   useEffect(() => {
-    const styleFromUrl = urlParams.style;
-    if(styleFromUrl === constants.TARASK_TAG
-        || styleFromUrl === constants.NARKAM_TAG
-        || styleFromUrl === constants.LACINK_TAG) {
-      props.setStyle(urlParams.style);
-    }
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
       .then(jsonData => {
         setGlosses(jsonData);
-        setFilteredGlosses(jsonData);
-      });
+      return jsonData;
+      })
+        .then(jsonData=>{
+          filterValue==null
+              ?
+              setFilteredGlosses(jsonData)
+              :
+              filterGlosses(filterValue);
+        });
   }, []);
 
   const resetCurrentPage = () => {
@@ -35,16 +45,16 @@ function Glossary(props) {
   };
 
   const filterGlosses = value => {
-    console.log(1);
     setFilteredGlosses(
       glosses.filter(
         item => item.originalValue.toLowerCase().includes(value.toLowerCase())));
-    console.log(2);
   };
 
   const onFilterChange = value => {
     filterGlosses(value);
     resetCurrentPage();
+    setFilterValue(value);
+    history.push(`/${props.style}/terms?filter=${value}&page=${currentPage}`);
   };
 
   return (
@@ -54,11 +64,13 @@ function Glossary(props) {
           <TermPage/>
         </Route>
         <Route path='/*'>
-          <SearchPanel onFilterChange={onFilterChange} />
+          <SearchPanel onFilterChange={onFilterChange}
+                       filterValue={filterValue}/>
           <RecordsBlock filteredGlosses={filteredGlosses}
                         style={props.style}
                         countPerPage={countPerPage}
-                        currentPage={currentPage}/>
+                        currentPage={currentPage}
+                        />
           <PaginationPanel filteredGlosses={filteredGlosses}
                            countPerPage={countPerPage}
                            currentPage={currentPage}

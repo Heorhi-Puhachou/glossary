@@ -36,7 +36,7 @@ const replaceBelByEng = input =>{
 };
 
 function SearchPanel(props) {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(props.filterValue);
     const checkAndChange = event=>{
         let input = event.target.value;
         input = replaceBelByEng(input);
