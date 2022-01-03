@@ -50,7 +50,7 @@ function Glossary(props) {
   return (
     <div className="tab-content">
       <Switch>
-        <Route path='/glossary/terms/:id'>
+        <Route path='/:style/glossary/terms/:id'>
           <TermPage/>
         </Route>
         <Route path='/*'>

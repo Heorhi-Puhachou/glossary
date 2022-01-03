@@ -2,20 +2,28 @@ import Glossary from '../glossary/Glossary';
 import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
-import {Route} from "react-router-dom";
+import {Route, Switch, Redirect, useHistory} from "react-router-dom";
 import React, {useState} from 'react';
 import {TARASK_TAG} from './constant';
 import {StyleSelector} from '../glossary/StyleSelector';
 import TabList from './TabList';
-import {Switch} from "react-router-dom";
 
 function Base() {
     const [style, setStyle] = useState(TARASK_TAG);
 
+    const history = useHistory();
+
+    const onChangeStyle = (newStyle) => {
+        const current = history.location;
+        const newLocation = current.pathname.replace(style, newStyle);
+        history.push(newLocation);
+        setStyle(newStyle);
+    };
+
     const tabs = [
-        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: '/glossary'},
-        {name: 'Правілы', element: <StyleGuide/>, link: '/styleguide'},
-        {name: 'Спасылкі', element: <LinksPage/>, link: '/linkspage'},
+        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: `/${style}/glossary`},
+        {name: 'Правілы', element: <StyleGuide/>, link: `/${style}/styleguide`},
+        {name: 'Спасылкі', element: <LinksPage/>, link: `/${style}/linkspage`},
     ];
 
 
@@ -27,7 +35,7 @@ function Base() {
 
     return (<div id="base">
         <div className="style">
-            <StyleSelector style={style} setStyle={setStyle}/>
+            <StyleSelector style={style} onChangeStyle={onChangeStyle}/>
         </div>
         <div className="title">
             <div>Беларускі тэхнічны пераклад</div>
@@ -45,7 +53,7 @@ function Base() {
                 {tabs[0].element}
             </Route>
             <Route path='/*'>
-                {tabs[0].element}
+                <Redirect to={`/${TARASK_TAG}`}/>
             </Route>
         </Switch>
     </div>);

@@ -13,7 +13,7 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <Link to={`/glossary/terms/${item.id}`} key={item.id} className="record">
+    <Link to={`/${style}/glossary/terms/${item.id}`} key={item.id} className="record">
       <div className="record-info">
         <div className="text-wrapper">
           {item.originalValue + ' - ' + renderValue.value}

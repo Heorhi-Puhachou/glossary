@@ -3,7 +3,7 @@ import './StyleSelector.css';
 
 export function StyleSelector(props) {
   return (
-    <div className="style-selector" onChange={event => props.setStyle(event.target.value)}>
+    <div className="style-selector" onChange={event => props.onChangeStyle(event.target.value)}>
       <input type="radio"
              value={constants.TARASK_TAG}
              name="style"
