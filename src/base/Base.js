@@ -26,7 +26,7 @@ function Base() {
 
     const onChangeStyle = (newStyle) => {
         const currentPath = location.pathname;
-        const newLocation = currentPath.replace(style, newStyle);
+        const newLocation = currentPath.replace(style, newStyle)+location.search;
         navigate(newLocation);
         setStyle(newStyle);
     };
