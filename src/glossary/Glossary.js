@@ -29,15 +29,9 @@ function Glossary(props) {
       .then(response => response.json())
       .then(jsonData => {
         setGlosses(jsonData);
+        setFilteredGlosses(jsonData);
       return jsonData;
-      })
-        .then(jsonData=>{
-          filterValue==null
-              ?
-              setFilteredGlosses(jsonData)
-              :
-              filterGlosses(filterValue);
-        });
+      });
   }, []);
 
   const resetCurrentPage = () => {
