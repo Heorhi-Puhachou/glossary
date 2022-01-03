@@ -29,13 +29,20 @@ function Glossary(props) {
       .then(response => response.json())
       .then(jsonData => {
         setGlosses(jsonData);
-        setFilteredGlosses(jsonData);
-      return jsonData;
       });
   }, []);
 
+  useEffect( ()=>{
+    filterGlosses(filterValue);
+  },[glosses]);
+
+  const updatePage = (page)=>{
+    setCurrentPage(+page);
+    history.push(`/${props.style}/terms?filter=${filterValue}&page=${page}`);
+  };
+
   const resetCurrentPage = () => {
-    setCurrentPage(1);
+    updatePage(1);
   };
 
   const filterGlosses = value => {
@@ -68,7 +75,7 @@ function Glossary(props) {
           <PaginationPanel filteredGlosses={filteredGlosses}
                            countPerPage={countPerPage}
                            currentPage={currentPage}
-                           setCurrentPage={setCurrentPage} />
+                           setCurrentPage={updatePage} />
         </Route>
       </Switch>
     </div>
