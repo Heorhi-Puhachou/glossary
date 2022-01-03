@@ -28,10 +28,6 @@ function Glossary(props) {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
       .then(jsonData => {
-        //set path for first load without info in url
-        if(location.pathname==='/') {
-          navigate(`/${props.style}/terms`);
-        }
         setGlosses(jsonData);
       });
   }, []);
