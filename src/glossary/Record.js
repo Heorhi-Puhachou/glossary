@@ -1,9 +1,11 @@
 import * as constants from '../base/constant';
 import React from 'react';
 import './Record.css';
-import {Link} from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
 
 export function Record(item, style) {
+  const match = useRouteMatch();
+
   let renderValue;
   if (style === constants.LACINK_TAG) {
     renderValue = item.lacink;
@@ -13,7 +15,7 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <Link to={`/${style}/terms/${item.id}`} key={item.id} className="record">
+    <Link to={`${match.path}/${item.id}`} key={item.id} className="record">
       <div className="record-info">
         <div className="text-wrapper">
           {item.originalValue + ' - ' + renderValue.value}

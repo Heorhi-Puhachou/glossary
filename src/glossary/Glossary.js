@@ -3,7 +3,7 @@ import {RecordsBlock} from './RecordsBlock';
 import './Glossary.css';
 import {PaginationPanel} from './PaginationPanel';
 import SearchPanel from './SearchPanel';
-import {Route, Switch, useHistory, useLocation} from 'react-router-dom';
+import {Route, Switch, useHistory, useLocation, useRouteMatch} from 'react-router-dom';
 import TermPage from "./TermPage";
 
 
@@ -12,6 +12,7 @@ function Glossary(props) {
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
 
+  const match = useRouteMatch();
   const history = useHistory();
   const location = useLocation();
 
@@ -38,7 +39,7 @@ function Glossary(props) {
 
   const updatePage = (page)=>{
     setCurrentPage(+page);
-    history.push(`/${props.style}/terms?filter=${filterValue}&page=${page}`);
+    history.push(`${match.path}?filter=${filterValue}&page=${page}`);
   };
 
   const resetCurrentPage = () => {
@@ -55,16 +56,16 @@ function Glossary(props) {
     filterGlosses(value);
     resetCurrentPage();
     setFilterValue(value);
-    history.push(`/${props.style}/terms?filter=${value}&page=${currentPage}`);
+    history.push(`${match.path}?filter=${value}&page=${currentPage}`);
   };
 
   return (
     <div className="tab-content">
       <Switch>
-        <Route path='/:style/terms/:id'>
+        <Route path={`${match.path}/:id`}>
           <TermPage/>
         </Route>
-        <Route path='/*'>
+        <Route path={`${match.path}`}>
           <SearchPanel onFilterChange={onFilterChange}
                        filterValue={filterValue}/>
           <RecordsBlock filteredGlosses={filteredGlosses}
