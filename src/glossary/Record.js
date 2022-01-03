@@ -1,10 +1,10 @@
 import * as constants from '../base/constant';
 import React from 'react';
 import './Record.css';
-import {Link, useRouteMatch} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 export function Record(item, style) {
-  const match = useRouteMatch();
+  const location = useLocation();
 
   let renderValue;
   if (style === constants.LACINK_TAG) {
@@ -15,12 +15,14 @@ export function Record(item, style) {
     renderValue = item.narkam;
   }
   return (
-    <Link to={`${match.path}/${item.id}`} key={item.id} className="record">
+    <NavLink className='record'
+             to={`${location.pathname}/${item.id}`}
+             key={item.id}>
       <div className="record-info">
         <div className="text-wrapper">
           {item.originalValue + ' - ' + renderValue.value}
         </div>
       </div>
-    </Link>
+    </NavLink>
   );
 }

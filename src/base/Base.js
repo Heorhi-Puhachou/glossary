@@ -2,21 +2,23 @@ import Glossary from '../glossary/Glossary';
 import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
-import {Route, Switch, Redirect, useHistory} from "react-router-dom";
+import {Route, Routes, Navigate, useNavigate, useLocation} from "react-router-dom";
 import React, {useState} from 'react';
 import {TARASK_TAG} from './constant';
 import {StyleSelector} from '../glossary/StyleSelector';
 import TabList from './TabList';
+import TermPage from "../glossary/TermPage";
 
 function Base() {
     const [style, setStyle] = useState(TARASK_TAG);
 
-    const history = useHistory();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const onChangeStyle = (newStyle) => {
-        const current = history.location;
-        const newLocation = current.pathname.replace(style, newStyle);
-        history.push(newLocation);
+        const currentPath = location.pathname;
+        const newLocation = currentPath.replace(style, newStyle);
+        navigate(newLocation);
         setStyle(newStyle);
     };
 
@@ -41,21 +43,16 @@ function Base() {
             <div>Беларускі тэхнічны пераклад</div>
         </div>
         <TabList tabs={tabs} activeTabName={activeTab} onChangeActiveTab={onChangeActiveTab}/>
-        <Switch>
+        <Routes>
             {
                 tabs.map(tab => {
-                    return <Route key={tab.name} path={tab.link}>
-                        {tab.element}
-                    </Route>
+                    return <Route key={tab.name} path={tab.link} element={tab.element}/>
                 })
             }
-            <Route path='/:style'>
-                {tabs[0].element}
-            </Route>
-            <Route path='/*'>
-                <Redirect to={`/${TARASK_TAG}`}/>
-            </Route>
-        </Switch>
+            <Route path={`/${style}/terms/:id`} element={<TermPage/>}/>
+            <Route path='/:style' element= {tabs[0].element}/>
+            <Route path='*' element= {tabs[0].element}/>} />
+        </Routes>
     </div>);
 }
 

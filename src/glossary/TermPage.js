@@ -1,11 +1,15 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const TermPage = () => {
     const urlParams = useParams();
+    const navigate = useNavigate();
 
     return (
         <div>
-            {urlParams.id}
+            <div>
+                {urlParams.id}
+            </div>
+            <button onClick={() => navigate(-1)}>Назад</button>
         </div>
     );
 };

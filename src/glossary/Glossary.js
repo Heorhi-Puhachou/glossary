@@ -3,8 +3,7 @@ import {RecordsBlock} from './RecordsBlock';
 import './Glossary.css';
 import {PaginationPanel} from './PaginationPanel';
 import SearchPanel from './SearchPanel';
-import {Route, Switch, useHistory, useLocation, useRouteMatch} from 'react-router-dom';
-import TermPage from "./TermPage";
+import {useLocation, useNavigate} from 'react-router-dom';
 
 
 function Glossary(props) {
@@ -12,8 +11,8 @@ function Glossary(props) {
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
 
-  const match = useRouteMatch();
-  const history = useHistory();
+
+  const navigate = useNavigate();
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -29,6 +28,10 @@ function Glossary(props) {
     fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/glossary.json')
       .then(response => response.json())
       .then(jsonData => {
+        //set path for first load without info in url
+        if(location.pathname==='/') {
+          navigate(`/${props.style}/terms`);
+        }
         setGlosses(jsonData);
       });
   }, []);
@@ -39,7 +42,7 @@ function Glossary(props) {
 
   const updatePage = (page)=>{
     setCurrentPage(+page);
-    history.push(`${match.path}?filter=${filterValue}&page=${page}`);
+    navigate(`${location.pathname}?filter=${filterValue}&page=${page}`);
   };
 
   const resetCurrentPage = () => {
@@ -56,16 +59,11 @@ function Glossary(props) {
     filterGlosses(value);
     resetCurrentPage();
     setFilterValue(value);
-    history.push(`${match.path}?filter=${value}&page=${currentPage}`);
+    navigate(`${location.pathname}?filter=${value}&page=1`);
   };
 
   return (
     <div className="tab-content">
-      <Switch>
-        <Route path={`${match.path}/:id`}>
-          <TermPage/>
-        </Route>
-        <Route path={`${match.path}`}>
           <SearchPanel onFilterChange={onFilterChange}
                        filterValue={filterValue}/>
           <RecordsBlock filteredGlosses={filteredGlosses}
@@ -77,8 +75,6 @@ function Glossary(props) {
                            countPerPage={countPerPage}
                            currentPage={currentPage}
                            setCurrentPage={updatePage} />
-        </Route>
-      </Switch>
     </div>
   );
 }
