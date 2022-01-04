@@ -3,8 +3,8 @@ import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
-import React, {useState} from 'react';
-import {LACINK_TAG, NARKAM_TAG} from './constant';
+import React, {useEffect, useState} from 'react';
+import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from './constant';
 import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';
 import {useDispatch, useSelector} from "react-redux";
@@ -16,16 +16,22 @@ function Base() {
     const dispatch = useDispatch();
     const location = useLocation();
 
+    useEffect(() => {
+        //http://localhost:3000/be-1959acad
+        //                      be-1959acad - location.pathname.substring(1, 12)
+        let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
+        if (initStyle === NARKAM_TAG) {
+            dispatch({type: NARKAM_TAG});
+        }
+        if (initStyle.includes(LACINK_TAG)) {
+            dispatch({type: LACINK_TAG});
+        }
+        if (initStyle.includes(TARASK_TAG)) {
+            dispatch({type: TARASK_TAG});
+        }
 
-    //http://localhost:3000/be-1959acad
-    //                      be-1959acad - location.pathname.substring(1, 12)
-    let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
-    if (initStyle === NARKAM_TAG) {
-        dispatch({type: NARKAM_TAG});
-    }
-    if (initStyle.includes(LACINK_TAG)) {
-        dispatch({type: LACINK_TAG});
-    }
+    }, []);
+
 
     const tabs = [
         {id: '1', name: labels.glossary, element: <Glossary/>, link: `/${style}/terms`},
@@ -65,7 +71,6 @@ function Base() {
                 })
             }
             <Route path="/:style" element={<Navigate to={`${style}/terms`}/>}/>
-            <Route path="*" element={<Navigate to={`/${style}/terms`}/>}/>
         </Routes>
     </div>);
 }

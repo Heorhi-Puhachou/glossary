@@ -20,14 +20,16 @@ function Glossary() {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const [loading, setLoading] = useState(true);
 
     const queryParams = new URLSearchParams(location.search);
     const filter = queryParams.get('filter') === null ? '' : queryParams.get('filter');
-    const page = queryParams.get('page') === null ? 1 : queryParams.get('page');
+    const page = queryParams.get('page') === null ? 1 : +queryParams.get('page');
+    const termId = queryParams.get('termId') === null ? null : +queryParams.get('termId');
 
     const [currentPage, setCurrentPage] = useState(page);
     const [filterValue, setFilterValue] = useState(filter);
-    const [selectedItemId, setSelectedItemId] = useState(null);
+    const [selectedItemId, setSelectedItemId] = useState(termId);
 
 
     useEffect(() => {
@@ -47,12 +49,14 @@ function Glossary() {
                                     termsMap.set(TARASK_TAG, jsonData);
                                     dispatch({type: 'addT', termsMap: termsMap});
                                     setFilteredTerms(termsMap.get(style)[0]);
+                                    setLoading(false);
                                 });
                         });
                 });
 
         } else {
             setFilteredTerms(terms);
+            setLoading(false);
         }
 
     }, []);
@@ -63,7 +67,7 @@ function Glossary() {
     }, [terms]);
 
     const updatePage = (page) => {
-        setCurrentPage(+page);
+        setCurrentPage(page);
         navigate(`${location.pathname}?filter=${filterValue}&page=${page}`);
     };
 
@@ -86,12 +90,21 @@ function Glossary() {
 
     const resetSelectedItem = () => {
         setSelectedItemId(null);
+        navigate(`${location.pathname}?filter=${filter}&page=${page}`);
     };
 
+    const onItemSelect = (id) => {
+        setSelectedItemId(id);
+        navigate(`${location.pathname}?termId=${id}`);
+    };
+
+    if (loading) {
+        return <div>Загрузка</div>
+    }
     if (selectedItemId === null) {
         return <SearchList onFilterChange={onFilterChange}
                            filterValue={filterValue}
-                           setSelectedItemId={setSelectedItemId}
+                           setSelectedItemId={onItemSelect}
                            filteredTerms={filteredTerms}
                            countPerPage={countPerPage}
                            currentPage={currentPage}
