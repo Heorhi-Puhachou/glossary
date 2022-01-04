@@ -3,7 +3,7 @@ import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {LACINK_TAG, NARKAM_TAG} from './constant';
 import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';
@@ -17,11 +17,16 @@ function Base() {
     const dispatch = useDispatch();
     const location = useLocation();
 
+
+
     //http://localhost:3000/be-1959acad
     //                      be-1959acad - location.pathname.substring(1, 12)
     let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
-    if (initStyle === NARKAM_TAG || initStyle === LACINK_TAG) {
-        dispatch({type: initStyle});
+    if (initStyle === NARKAM_TAG) {
+        dispatch({type: NARKAM_TAG});
+    }
+    if(initStyle.includes(LACINK_TAG)) {
+        dispatch({type: LACINK_TAG});
     }
 
     const tabs = [
