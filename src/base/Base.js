@@ -2,37 +2,29 @@ import Glossary from '../glossary/Glossary';
 import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
-import {Route, Routes, Navigate, useNavigate, useLocation, useParams} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import React, {useState} from 'react';
-import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from './constant';
+import {LACINK_TAG, NARKAM_TAG} from './constant';
 import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';
 import TermPage from "../glossary/TermPage";
+import {useDispatch, useSelector} from "react-redux";
 
 function Base() {
 
-    const navigate = useNavigate();
+    const style = useSelector(state => state.style);
+    const dispatch = useDispatch();
     const location = useLocation();
 
     //http://localhost:3000/be-1959acad
     //                      be-1959acad - location.pathname.substring(1, 12)
     let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
-    if (initStyle !== NARKAM_TAG && initStyle !== LACINK_TAG) {
-        initStyle = TARASK_TAG;
+    if (initStyle === NARKAM_TAG || initStyle === LACINK_TAG) {
+        dispatch({type: initStyle});
     }
 
-    const [style, setStyle] = useState(initStyle);
-
-
-    const onChangeStyle = (newStyle) => {
-        const currentPath = location.pathname;
-        const newLocation = currentPath.replace(style, newStyle)+location.search;
-        navigate(newLocation);
-        setStyle(newStyle);
-    };
-
     const tabs = [
-        {name: 'Гласарый', element: <Glossary style={style} setStyle={setStyle}/>, link: `/${style}/terms`},
+        {name: 'Гласарый', element: <Glossary/>, link: `/${style}/terms`},
         {name: 'Правілы', element: <StyleGuide/>, link: `/${style}/styleguide`},
         {name: 'Спасылкі', element: <LinksPage/>, link: `/${style}/linkspage`},
     ];
@@ -46,7 +38,7 @@ function Base() {
 
     return (<div id="base">
         <div className="style">
-            <StyleSelector style={style} onChangeStyle={onChangeStyle}/>
+            <StyleSelector/>
         </div>
         <div className="title">
             <div>Беларускі тэхнічны пераклад</div>

@@ -2,8 +2,10 @@ import * as constants from '../base/constant';
 import React from 'react';
 import './Record.css';
 import {NavLink, useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-export function Record(item, style) {
+export function Record(item) {
+  const style = useSelector(state => state.style);
   const location = useLocation();
 
   let renderValue;

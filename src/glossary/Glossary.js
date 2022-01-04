@@ -6,7 +6,7 @@ import SearchPanel from './SearchPanel';
 import {useLocation, useNavigate} from 'react-router-dom';
 
 
-function Glossary(props) {
+function Glossary() {
   const countPerPage = 4;
   const [filteredGlosses, setFilteredGlosses] = useState([]);
   const [glosses, setGlosses] = useState([]);
@@ -63,7 +63,6 @@ function Glossary(props) {
           <SearchPanel onFilterChange={onFilterChange}
                        filterValue={filterValue}/>
           <RecordsBlock filteredGlosses={filteredGlosses}
-                        style={props.style}
                         countPerPage={countPerPage}
                         currentPage={currentPage}
                         />
