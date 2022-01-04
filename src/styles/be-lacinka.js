@@ -1,5 +1,5 @@
 export const LACINK = {
-    title: 'Bjelаruskі technіčny pjerаklаd',
+    title: 'Bielаruskі technіčny pierаklаd',
     glossary: 'Hljasаryj',
     rules: 'Prаvіly',
     links: 'Spаsylkі',
