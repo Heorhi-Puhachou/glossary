@@ -19,7 +19,7 @@ function Base() {
     useEffect(() => {
         //http://localhost:3000/narkam
         //                      narkam - location.pathname.substring(1, 7)
-        let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 7) : '';
+        let initStyle = location.pathname.length > 6 ? location.pathname.substring(1, 7) : '';
         if (initStyle === NARKAM_TAG) {
             dispatch({type: NARKAM_TAG});
         }
