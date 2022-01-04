@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 function Base() {
 
     const style = useSelector(state => state.style);
+    const labels = useSelector(state => state.labels);
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -24,16 +25,16 @@ function Base() {
     }
 
     const tabs = [
-        {name: 'Гласарый', element: <Glossary/>, link: `/${style}/terms`},
-        {name: 'Правілы', element: <StyleGuide/>, link: `/${style}/styleguide`},
-        {name: 'Спасылкі', element: <LinksPage/>, link: `/${style}/linkspage`},
+        {id: '1', name: labels.glossary, element: <Glossary/>, link: `/${style}/terms`},
+        {id: '2', name: labels.rules, element: <StyleGuide/>, link: `/${style}/styleguide`},
+        {id: '3', name: labels.links, element: <LinksPage/>, link: `/${style}/linkspage`},
     ];
 
 
-    const [activeTab, setActiveTab] = useState(tabs[0].name);
+    const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
     const onChangeActiveTab = (newActiveTabName) => {
-        setActiveTab(newActiveTabName);
+        setActiveTabId(newActiveTabName);
     };
 
     return (<div id="base">
@@ -41,13 +42,13 @@ function Base() {
             <StyleSelector/>
         </div>
         <div className="title">
-            <div>Беларускі тэхнічны пераклад</div>
+            <div>{labels.title}</div>
         </div>
-        <TabList tabs={tabs} activeTabName={activeTab} onChangeActiveTab={onChangeActiveTab}/>
+        <TabList tabs={tabs} activeTabId={activeTabId} onChangeActiveTab={onChangeActiveTab}/>
         <Routes>
             {
                 tabs.map(tab => {
-                    return <Route key={tab.name}
+                    return <Route key={tab.id}
                                   path={tab.link}
                                   element={tab.element}/>
                 })

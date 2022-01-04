@@ -10,10 +10,10 @@ function TabList(props) {
         <div className="tab-list">
             {props.tabs.map(tab => {
                 let classes = 'tab-list-item';
-                if (tab.name === props.activeTabName) {
+                if (tab.id === props.activeTabId) {
                     classes = classes + ' tab-list-active';
                 }
-                return <div key={tab.name} className={classes} onClick={() => props.onChangeActiveTab(tab.name)}>
+                return <div key={tab.name} className={classes} onClick={() => props.onChangeActiveTab(tab.id)}>
                     <Link to={tab.link} className="tab-text-wrapper">
                         {tab.name}
                     </Link>

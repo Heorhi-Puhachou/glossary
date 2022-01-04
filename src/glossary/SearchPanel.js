@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './SearchPanel.css';
+import {useSelector} from "react-redux";
 
 
 const replaceBelByEng = input =>{
@@ -35,8 +36,12 @@ const replaceBelByEng = input =>{
         .replace('ь','m');
 };
 
+
+
 function SearchPanel(props) {
     const [inputValue, setInputValue] = useState(props.filterValue);
+    const labels = useSelector(state => state.labels);
+
     const checkAndChange = event=>{
         let input = event.target.value;
         input = replaceBelByEng(input);
@@ -46,7 +51,7 @@ function SearchPanel(props) {
 
   return (
     <div className="filter">
-      <input type="text" onChange={checkAndChange} value={inputValue} placeholder="увядзіце анг. тэрмін" />
+      <input type="text" onChange={checkAndChange} value={inputValue} placeholder={labels.input_eng_term} />
     </div>
   );
 }
