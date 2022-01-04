@@ -4,6 +4,7 @@ import LinksBlock from "./LinksBlock";
 import "./LinksPage.css"
 import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
 import {useDispatch, useSelector} from "react-redux";
+import Preloader from "../base/Preloader";
 
 function LinksPage() {
 
@@ -14,6 +15,11 @@ function LinksPage() {
 
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
+    const [loading, setLoading] = useState(true);
+    const stopLoading = () => {
+        setLoading(false);
+    };
+
 
 
     useEffect(() => {
@@ -33,11 +39,13 @@ function LinksPage() {
                                     linksMap.set(TARASK_TAG, jsonData);
                                     dispatch({type: 'addL', linksMap: linksMap});
                                     setSelectedGroup(linksMap.get(style)[0]);
+                                    setTimeout(stopLoading, 500);
                                 });
                         });
                 });
 
         } else {
+            setTimeout(stopLoading, 500);
             setSelectedGroup(linkGroups[0]);
         }
 
@@ -57,6 +65,9 @@ function LinksPage() {
         }
     };
 
+    if (loading) {
+        return <Preloader/>;
+    }
 
     return (
         <div className="links-page">

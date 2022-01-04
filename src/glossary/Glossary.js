@@ -32,6 +32,10 @@ function Glossary() {
     const [filterValue, setFilterValue] = useState(filter);
     const [selectedItemId, setSelectedItemId] = useState(termId);
 
+    const stopLoading = () => {
+        setLoading(false);
+    };
+
 
     useEffect(() => {
         if (terms === undefined || terms.length === 0) {
@@ -50,14 +54,14 @@ function Glossary() {
                                     termsMap.set(TARASK_TAG, jsonData);
                                     dispatch({type: 'addT', termsMap: termsMap});
                                     setFilteredTerms(termsMap.get(style)[0]);
-                                    setLoading(false);
+                                    setTimeout(stopLoading, 500);
                                 });
                         });
                 });
 
         } else {
             setFilteredTerms(terms);
-            setLoading(false);
+            setTimeout(stopLoading, 500);
         }
 
     }, []);

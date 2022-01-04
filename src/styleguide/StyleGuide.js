@@ -4,6 +4,7 @@ import RulesBlock from "./RulesBlock";
 import "./StyleGuide.css";
 import {useDispatch, useSelector} from "react-redux";
 import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
+import Preloader from "../base/Preloader";
 
 function StyleGuide() {
     const style = useSelector(state => state.style);
@@ -13,6 +14,10 @@ function StyleGuide() {
 
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
+    const [loading, setLoading] = useState(true);
+    const stopLoading = () => {
+        setLoading(false);
+    };
 
 
     useEffect(() => {
@@ -32,11 +37,13 @@ function StyleGuide() {
                                     rulesMap.set(TARASK_TAG, jsonData);
                                     dispatch({type: 'addR', rulesMap: rulesMap});
                                     setSelectedGroup(rulesMap.get(style)[0]);
+                                    setTimeout(stopLoading, 500);
                                 });
                         });
                 });
 
         } else {
+            setTimeout(stopLoading, 500);
             setSelectedGroup(ruleGroups[0]);
         }
 
@@ -56,6 +63,9 @@ function StyleGuide() {
         }
     };
 
+    if (loading) {
+        return <Preloader/>;
+    }
 
     return (
         <div className="rules-page">
