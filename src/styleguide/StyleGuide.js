@@ -1,22 +1,50 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Option from "../links/Option";
 import RulesBlock from "./RulesBlock";
 import "./StyleGuide.css";
+import {useDispatch, useSelector} from "react-redux";
+import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
 
 function StyleGuide() {
-    const [ruleGroups, setRuleGroups] = useState([]);
+    const style = useSelector(state => state.style);
+    const ruleGroups = useSelector(state => state.ruleGroups);
+    const dispatch = useDispatch();
+
+
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
 
 
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/style.json')
-            .then(response => response.json())
-            .then(jsonData => {
-                setRuleGroups(jsonData);
-                setSelectedGroup(jsonData[0]);
-            });
+        if (ruleGroups === undefined || ruleGroups.length === 0) {
+            const rulesMap = new Map();
+            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/1959acad.json')
+                .then(response => response.json())
+                .then(jsonData => {
+                    rulesMap.set(NARKAM_TAG, jsonData);
+                    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/lacinka.json')
+                        .then(response => response.json())
+                        .then(jsonData => {
+                            rulesMap.set(LACINK_TAG, jsonData);
+                            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/tarask.json')
+                                .then(response => response.json())
+                                .then(jsonData => {
+                                    rulesMap.set(TARASK_TAG, jsonData);
+                                    dispatch({type: 'addR', rulesMap: rulesMap});
+                                    setSelectedGroup(rulesMap.get(style)[0]);
+                                });
+                        });
+                });
+
+        } else {
+            setSelectedGroup(ruleGroups[0]);
+        }
+
     }, []);
+
+    useEffect(() => {
+        setSelectedGroup(ruleGroups[0]);
+    }, [ruleGroups]);
 
 
     const onGroupSelected = (event) => {
