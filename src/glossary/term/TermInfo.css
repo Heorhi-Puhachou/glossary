@@ -3,14 +3,13 @@
 }
 
 .term-info-panel {
-    height: 80%;
-}
-
-.term-stub-panel {
-    height: 5%;
+    height: 90%;
+    overflow-y: scroll;
 }
 
 h2.headertekst {
+    padding: 10px;
+    margin: 0;
     text-align: center;
     color: #dddddd;
 }
@@ -58,21 +57,21 @@ h2.headertekst {
 
 @media (min-width: 901px) {
     .term-text {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .wrong-info {
-        font-size: 30px;
+        font-size: 24px;
     }
 }
 
 @media (max-width: 900px) {
     .term-text {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .wrong-info {
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 

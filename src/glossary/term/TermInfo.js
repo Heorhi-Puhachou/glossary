@@ -46,17 +46,21 @@ const TermInfo = (props) => {
         <div className="tab-content">
             <div className="term-stub-panel"/>
             <div className="term-info-panel">
-                <h2 className="headertekst">{labels.term + ' № ' + props.termId}</h2>
-                <div className='term-info-block'>
-                    <div className="record-info">
-                        <div className="term-text">
-                            {term.originalValue + ' - ' + term.value}
+                <div>
+                    <h2 className="headertekst">{labels.term + ' № ' + props.termId}</h2>
+                    <div className='term-info-block'>
+                        <div className="record-info">
+                            <div className="term-text">
+                                {term.originalValue + ' - ' + term.value}
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 {term.wrong && wrongSection}
                 {term.comment && commentSection}
             </div>
+
             < div className="term-button-panel">
                 <button className='term-back-button' onClick={() => props.resetSelectedItem()}>{labels.back}</button>
             </div>
