@@ -6,6 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 export function StyleSelector() {
 
     const style = useSelector(state => state.style);
+    const labels = useSelector(state => state.labels);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -26,19 +27,19 @@ export function StyleSelector() {
                    name="style"
                    defaultChecked={style === constants.TARASK_TAG}
                    onChange={() => {
-                   }}/>{constants.TARASK_TAG}
+                   }}/>{labels.tarask}
             <input type="radio"
                    value={constants.NARKAM_TAG}
                    name="style"
                    checked={style === constants.NARKAM_TAG}
                    onChange={() => {
-                   }}/>{constants.NARKAM_TAG}
+                   }}/>{labels.narkam}
             <input type="radio"
                    value={constants.LACINK_TAG}
                    name="style"
                    checked={style === constants.LACINK_TAG}
                    onChange={() => {
-                   }}/>{constants.LACINK_TAG}
+                   }}/>{labels.lacink}
         </div>
     );
 }

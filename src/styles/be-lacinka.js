@@ -9,5 +9,8 @@ export const LACINK = {
     back: 'Nаźаd',
     term: 'Termіn',
     wrong_usage: 'Njaprаvіlnаje ŭzyvаnnje',
-    comment: 'Kаmentаr'
+    comment: 'Kаmentаr',
+    narkam: 'narkam',
+    tarask: 'tarask',
+    lacink: 'lacink',
 };

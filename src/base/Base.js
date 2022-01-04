@@ -17,16 +17,16 @@ function Base() {
     const location = useLocation();
 
     useEffect(() => {
-        //http://localhost:3000/be-1959acad
-        //                      be-1959acad - location.pathname.substring(1, 12)
-        let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
+        //http://localhost:3000/narkam
+        //                      narkam - location.pathname.substring(1, 7)
+        let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 7) : '';
         if (initStyle === NARKAM_TAG) {
             dispatch({type: NARKAM_TAG});
         }
-        if (initStyle.includes(LACINK_TAG)) {
+        if (initStyle === LACINK_TAG) {
             dispatch({type: LACINK_TAG});
         }
-        if (initStyle.includes(TARASK_TAG)) {
+        if (initStyle === TARASK_TAG) {
             dispatch({type: TARASK_TAG});
         }
 
@@ -71,9 +71,9 @@ function Base() {
                 })
             }
 
-            <Route path="/be-1959acad" element={<Navigate to={`/be-1959acad/terms`}/>}/>
-            <Route path="/be-lacinka" element={<Navigate to={`/be-lacinka/terms`}/>}/>
-            <Route path="/be-tarask" element={<Navigate to={`/be-tarask/terms`}/>}/>
+            <Route path="/narkam" element={<Navigate to={`/narkam/terms`}/>}/>
+            <Route path="/lacink" element={<Navigate to={`/lacink/terms`}/>}/>
+            <Route path="/tarask" element={<Navigate to={`/tarask/terms`}/>}/>
             <Route path="" element={<Navigate to={`${style}/terms`}/>}/>
         </Routes>
     </div>);
