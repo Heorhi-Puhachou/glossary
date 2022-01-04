@@ -5,6 +5,7 @@ import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
 import {useDispatch, useSelector} from "react-redux";
 import SearchList from "./search/SearcList";
 import TermInfo from "./term/TermInfo";
+import Preloader from "../base/Preloader";
 
 
 function Glossary() {
@@ -99,7 +100,7 @@ function Glossary() {
     };
 
     if (loading) {
-        return <div>Загрузка</div>
+        return <Preloader/>;
     }
     if (selectedItemId === null) {
         return <SearchList onFilterChange={onFilterChange}
