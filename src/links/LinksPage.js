@@ -2,22 +2,50 @@ import {useEffect, useState} from "react";
 import Option from "./Option";
 import LinksBlock from "./LinksBlock";
 import "./LinksPage.css"
+import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
+import {useDispatch, useSelector} from "react-redux";
 
 function LinksPage() {
 
-    const [linkGroups, setLinkGroups] = useState([]);
+    const style = useSelector(state => state.style);
+    const linkGroups = useSelector(state => state.linkGroups);
+    const dispatch = useDispatch();
+
+
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
 
 
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/links.json')
-            .then(response => response.json())
-            .then(jsonData => {
-                setLinkGroups(jsonData);
-                setSelectedGroup(jsonData[0]);
-            });
+        if (linkGroups === undefined || linkGroups.length === 0) {
+            const linksMap = new Map();
+            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/1959acad.json')
+                .then(response => response.json())
+                .then(jsonData => {
+                    linksMap.set(NARKAM_TAG, jsonData);
+                    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/lacinka.json')
+                        .then(response => response.json())
+                        .then(jsonData => {
+                            linksMap.set(LACINK_TAG, jsonData);
+                            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/tarask.json')
+                                .then(response => response.json())
+                                .then(jsonData => {
+                                    linksMap.set(TARASK_TAG, jsonData);
+                                    dispatch({type: 'addL', linksMap: linksMap});
+                                    setSelectedGroup(linksMap.get(style)[0]);
+                                });
+                        });
+                });
+
+        } else {
+            setSelectedGroup(linkGroups[0]);
+        }
+
     }, []);
+
+    useEffect(() => {
+        setSelectedGroup(linkGroups[0]);
+    }, [linkGroups]);
 
 
     const onGroupSelected = (event) => {

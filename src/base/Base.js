@@ -3,7 +3,7 @@ import StyleGuide from '../styleguide/StyleGuide';
 import LinksPage from '../links/LinksPage';
 import './Base.css';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {LACINK_TAG, NARKAM_TAG} from './constant';
 import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';

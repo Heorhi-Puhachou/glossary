@@ -5,27 +5,32 @@ import {LACINK} from "../styles/be-lacinka";
 import {TARASK} from "../styles/be-tarask";
 
 const styleGuideMap = new Map();
+const linksMap = new Map();
+const termsMap = new Map();
 
-const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []}, action) => {
+const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: [], linkGroups: []}, action) => {
     if (action.type === NARKAM_TAG) {
         return {
             style: NARKAM_TAG,
             labels: NARKAM,
-            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : []
+            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
+            linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
         };
     }
     if (action.type === LACINK_TAG) {
         return {
             style: LACINK_TAG,
             labels: LACINK,
-            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : []
+            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
+            linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
         };
     }
     if (action.type === TARASK_TAG) {
         return {
             style: TARASK_TAG,
             labels: TARASK,
-            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : []
+            ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
+            linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
         };
     }
     if (action.type === 'addR') {
@@ -35,7 +40,19 @@ const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []
         return {
             style: state.style,
             labels: state.labels,
-            ruleGroups: styleGuideMap.get(state.style)
+            ruleGroups: styleGuideMap.get(state.style),
+            linkGroups: state.linkGroups,
+        };
+    }
+    if (action.type === 'addL') {
+        linksMap.set(NARKAM_TAG, action.linksMap.get(NARKAM_TAG));
+        linksMap.set(TARASK_TAG, action.linksMap.get(TARASK_TAG));
+        linksMap.set(LACINK_TAG, action.linksMap.get(LACINK_TAG));
+        return {
+            style: state.style,
+            labels: state.labels,
+            ruleGroups: state.ruleGroups,
+            linkGroups: linksMap.get(state.style)
         };
     }
 
