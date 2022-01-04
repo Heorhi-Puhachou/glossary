@@ -70,7 +70,10 @@ function Base() {
                                   element={tab.element}/>
                 })
             }
-            <Route path="/:style" element={<Navigate to={`${style}/terms`}/>}/>
+
+            <Route path="/be-1959acad" element={<Navigate to={`/be-1959acad/terms`}/>}/>
+            <Route path="/be-lacinka" element={<Navigate to={`/be-lacinka/terms`}/>}/>
+            <Route path="/be-tarask" element={<Navigate to={`/be-tarask/terms`}/>}/>
             <Route path="" element={<Navigate to={`${style}/terms`}/>}/>
         </Routes>
     </div>);
