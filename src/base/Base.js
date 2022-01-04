@@ -18,14 +18,13 @@ function Base() {
     const location = useLocation();
 
 
-
     //http://localhost:3000/be-1959acad
     //                      be-1959acad - location.pathname.substring(1, 12)
     let initStyle = location.pathname.length > 9 ? location.pathname.substring(1, 12) : '';
     if (initStyle === NARKAM_TAG) {
         dispatch({type: NARKAM_TAG});
     }
-    if(initStyle.includes(LACINK_TAG)) {
+    if (initStyle.includes(LACINK_TAG)) {
         dispatch({type: LACINK_TAG});
     }
 
@@ -35,8 +34,16 @@ function Base() {
         {id: '3', name: labels.links, element: <LinksPage/>, link: `/${style}/linkspage`},
     ];
 
+    let initTabId = tabs[0].id;
+    if (location.pathname.includes('styleguide')) {
+        initTabId = '2';
+    }
+    if (location.pathname.includes('linkspage')) {
+        initTabId = '3';
+    }
 
-    const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+
+    const [activeTabId, setActiveTabId] = useState(initTabId);
 
     const onChangeActiveTab = (newActiveTabName) => {
         setActiveTabId(newActiveTabName);
@@ -60,7 +67,6 @@ function Base() {
             }
             <Route path={`/${style}/terms/:id`} element={<TermPage/>}/>
             <Route path="/:style" element={<Navigate to={`/:style/terms`}/>}/>
-            <Route path="*" element={<Navigate to={tabs[0].link}/>}/>
         </Routes>
     </div>);
 }
