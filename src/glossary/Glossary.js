@@ -3,8 +3,8 @@ import './Glossary.css';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
 import {useDispatch, useSelector} from "react-redux";
-import SearchList from "./SearcList";
-import TermInfo from "./TermInfo";
+import SearchList from "./search/SearcList";
+import TermInfo from "./term/TermInfo";
 
 
 function Glossary() {
@@ -27,7 +27,7 @@ function Glossary() {
 
     const [currentPage, setCurrentPage] = useState(page);
     const [filterValue, setFilterValue] = useState(filter);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItemId, setSelectedItemId] = useState(null);
 
 
     useEffect(() => {
@@ -85,20 +85,20 @@ function Glossary() {
     };
 
     const resetSelectedItem = () => {
-        setSelectedItem(null);
+        setSelectedItemId(null);
     };
 
-    if (selectedItem === null) {
+    if (selectedItemId === null) {
         return <SearchList onFilterChange={onFilterChange}
                            filterValue={filterValue}
-                           setSelectedItem={setSelectedItem}
+                           setSelectedItemId={setSelectedItemId}
                            filteredTerms={filteredTerms}
                            countPerPage={countPerPage}
                            currentPage={currentPage}
                            updatePage={updatePage}/>
     } else {
         return <TermInfo
-            term={setSelectedItem}
+            termId={selectedItemId}
             resetSelectedItem={resetSelectedItem}/>;
     }
 }

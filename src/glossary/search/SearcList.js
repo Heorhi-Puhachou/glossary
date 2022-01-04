@@ -10,7 +10,7 @@ const SearchList = (props)=>{
         <RecordsBlock filteredGlosses={props.filteredTerms}
                       countPerPage={props.countPerPage}
                       currentPage={props.currentPage}
-                      setSelectedItem={props.setSelectedItem}/>
+                      setSelectedItemId={props.setSelectedItemId}/>
         <PaginationPanel filteredGlosses={props.filteredTerms}
                          countPerPage={props.countPerPage}
                          currentPage={props.currentPage}
