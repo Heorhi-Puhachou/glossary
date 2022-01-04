@@ -8,13 +8,20 @@ const styleGuideMap = new Map();
 const linksMap = new Map();
 const termsMap = new Map();
 
-const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: [], linkGroups: []}, action) => {
+const styleReducer = (state = {
+    style: TARASK_TAG,
+    labels: TARASK,
+    ruleGroups: [],
+    linkGroups: [],
+    terms: []
+}, action) => {
     if (action.type === NARKAM_TAG) {
         return {
             style: NARKAM_TAG,
             labels: NARKAM,
             ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
             linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
+            terms: termsMap.get(action.type) ? termsMap.get(action.type) : [],
         };
     }
     if (action.type === LACINK_TAG) {
@@ -23,6 +30,7 @@ const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []
             labels: LACINK,
             ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
             linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
+            terms: termsMap.get(action.type) ? termsMap.get(action.type) : [],
         };
     }
     if (action.type === TARASK_TAG) {
@@ -31,6 +39,7 @@ const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []
             labels: TARASK,
             ruleGroups: styleGuideMap.get(action.type) ? styleGuideMap.get(action.type) : [],
             linkGroups: linksMap.get(action.type) ? linksMap.get(action.type) : [],
+            terms: termsMap.get(action.type) ? termsMap.get(action.type) : [],
         };
     }
     if (action.type === 'addR') {
@@ -42,6 +51,7 @@ const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []
             labels: state.labels,
             ruleGroups: styleGuideMap.get(state.style),
             linkGroups: state.linkGroups,
+            terms: state.terms,
         };
     }
     if (action.type === 'addL') {
@@ -52,7 +62,20 @@ const styleReducer = (state = {style: TARASK_TAG, labels: TARASK, ruleGroups: []
             style: state.style,
             labels: state.labels,
             ruleGroups: state.ruleGroups,
-            linkGroups: linksMap.get(state.style)
+            linkGroups: linksMap.get(state.style),
+            terms: state.terms,
+        };
+    }
+    if (action.type === 'addT') {
+        termsMap.set(NARKAM_TAG, action.termsMap.get(NARKAM_TAG));
+        termsMap.set(TARASK_TAG, action.termsMap.get(TARASK_TAG));
+        termsMap.set(LACINK_TAG, action.termsMap.get(LACINK_TAG));
+        return {
+            style: state.style,
+            labels: state.labels,
+            ruleGroups: state.ruleGroups,
+            linkGroups: state.linkGroups,
+            terms: termsMap.get(state.style)
         };
     }
 

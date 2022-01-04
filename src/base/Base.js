@@ -66,7 +66,8 @@ function Base() {
                 })
             }
             <Route path={`/${style}/terms/:id`} element={<TermPage/>}/>
-            <Route path="/:style" element={<Navigate to={`/:style/terms`}/>}/>
+            <Route path="/:style" element={<Navigate to={`${style}/terms`}/>}/>
+            <Route path="*" element={<Navigate to={`/${style}/terms`}/>}/>
         </Routes>
     </div>);
 }

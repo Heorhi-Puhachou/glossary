@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Option from "./Option";
 import LinksBlock from "./LinksBlock";
 import "./LinksPage.css"
