@@ -1,4 +1,4 @@
-import * as constants from '../base/constant';
+import * as constants from './constant';
 import './StyleSelector.css';
 
 export function StyleSelector(props) {
@@ -7,7 +7,7 @@ export function StyleSelector(props) {
       <input type="radio"
              value={constants.TARASK_TAG}
              name="style"
-             defaultChecked={true}
+             defaultChecked={props.style===constants.TARASK_TAG}
              onChange={()=>{}}/>{constants.TARASK_TAG}
       <input type="radio"
              value={constants.NARKAM_TAG}

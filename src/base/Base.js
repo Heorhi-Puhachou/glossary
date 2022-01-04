@@ -5,7 +5,7 @@ import './Base.css';
 import {Route, Routes, Navigate, useNavigate, useLocation, useParams} from "react-router-dom";
 import React, {useState} from 'react';
 import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from './constant';
-import {StyleSelector} from '../glossary/StyleSelector';
+import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';
 import TermPage from "../glossary/TermPage";
 
