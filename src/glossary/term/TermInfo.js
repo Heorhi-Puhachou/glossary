@@ -31,7 +31,7 @@ const TermInfo = (props) => {
 
     const commentSection = <div>
         <div>
-            return <h2 className="headertekst">{labels.comment}</h2>
+            <h2 className="headertekst">{labels.comment}</h2>
             <div className='term-info-block'>
                 <div className="record-info">
                     <div className="term-text">
