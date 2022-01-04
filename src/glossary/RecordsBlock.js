@@ -9,7 +9,7 @@ export function RecordsBlock(props) {
 
     return (
         <div className="records">
-            {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item))}
+            {props.filteredGlosses.slice(startIndex, endIndex).map((item) => Record(item, props.setSelectedItem))}
         </div>
     )
         ;

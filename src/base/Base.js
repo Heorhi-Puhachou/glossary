@@ -7,7 +7,6 @@ import React, {useState} from 'react';
 import {LACINK_TAG, NARKAM_TAG} from './constant';
 import {StyleSelector} from './StyleSelector';
 import TabList from './TabList';
-import TermPage from "../glossary/TermPage";
 import {useDispatch, useSelector} from "react-redux";
 
 function Base() {
@@ -65,7 +64,6 @@ function Base() {
                                   element={tab.element}/>
                 })
             }
-            <Route path={`/${style}/terms/:id`} element={<TermPage/>}/>
             <Route path="/:style" element={<Navigate to={`${style}/terms`}/>}/>
             <Route path="*" element={<Navigate to={`/${style}/terms`}/>}/>
         </Routes>
