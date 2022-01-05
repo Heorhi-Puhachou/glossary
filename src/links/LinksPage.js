@@ -21,18 +21,22 @@ function LinksPage() {
         setLoading(false);
     };
 
+    const getLinksUrl = tag => {
+        return 'https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/' + tag + '.json';
+    };
+
     useEffect(() => {
         if (loading) {
             const linksMap = new Map();
-            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/1959acad.json')
+            fetch(getLinksUrl(NARKAM_TAG))
                 .then(response => response.json())
                 .then(jsonData => {
                     linksMap.set(NARKAM_TAG, jsonData);
-                    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/lacinka.json')
+                    fetch(getLinksUrl(LACINK_TAG))
                         .then(response => response.json())
                         .then(jsonData => {
                             linksMap.set(LACINK_TAG, jsonData);
-                            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/tarask.json')
+                            fetch(getLinksUrl(TARASK_TAG))
                                 .then(response => response.json())
                                 .then(jsonData => {
                                     linksMap.set(TARASK_TAG, jsonData);

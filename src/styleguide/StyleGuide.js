@@ -20,19 +20,23 @@ function StyleGuide() {
         setLoading(false);
     };
 
+    const getStyleUrl = tag => {
+        return 'https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/' + tag + '.json';
+    };
+
 
     useEffect(() => {
         if (loading) {
             const rulesMap = new Map();
-            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/1959acad.json')
+            fetch(getStyleUrl(NARKAM_TAG))
                 .then(response => response.json())
                 .then(jsonData => {
                     rulesMap.set(NARKAM_TAG, jsonData);
-                    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/lacinka.json')
+                    fetch(getStyleUrl(LACINK_TAG))
                         .then(response => response.json())
                         .then(jsonData => {
                             rulesMap.set(LACINK_TAG, jsonData);
-                            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/tarask.json')
+                            fetch(getStyleUrl(TARASK_TAG))
                                 .then(response => response.json())
                                 .then(jsonData => {
                                     rulesMap.set(TARASK_TAG, jsonData);

@@ -36,18 +36,22 @@ function Glossary() {
         setLoading(false);
     };
 
+    const getTermUrl = tag => {
+        return 'https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/glossary/' + tag + '.json';
+    };
+
     useEffect(() => {
         if (loading) {
             const termsMap = new Map();
-            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/glossary/1959acad.json')
+            fetch(getTermUrl(NARKAM_TAG))
                 .then(response => response.json())
                 .then(jsonData => {
                     termsMap.set(NARKAM_TAG, jsonData);
-                    fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/glossary/lacinka.json')
+                    fetch(getTermUrl(LACINK_TAG))
                         .then(response => response.json())
                         .then(jsonData => {
                             termsMap.set(LACINK_TAG, jsonData);
-                            fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/glossary/tarask.json')
+                            fetch(getTermUrl(TARASK_TAG))
                                 .then(response => response.json())
                                 .then(jsonData => {
                                     termsMap.set(TARASK_TAG, jsonData);
