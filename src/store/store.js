@@ -1,8 +1,8 @@
 import {createStore} from "redux";
 import {LACINK_TAG, NARKAM_TAG, TARASK_TAG} from "../base/constant";
-import {NARKAM} from "../styles/be-1959acad";
-import {LACINK} from "../styles/be-lacinka";
-import {TARASK} from "../styles/be-tarask";
+import {NARKAM} from "../styles/narkam";
+import {LACINK} from "../styles/lacink";
+import {TARASK} from "../styles/tarask";
 
 const styleGuideMap = new Map();
 const linksMap = new Map();
