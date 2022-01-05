@@ -15,6 +15,10 @@ html, body {
     height: 100%;
 }
 
+.display-linebreak {
+    white-space: pre-line;
+}
+
 
 .tab-block {
     height: 100%;

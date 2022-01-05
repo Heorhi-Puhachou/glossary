@@ -5,7 +5,7 @@ const Rule = (description, example) => {
 
 
     return (
-        <div key={description.substring(0, 10)} className="rule-record display-linebreak">
+        <div key={description.substring(0, 10)} className="rule-record">
             <div className="rule-info">
                 <div className="rule-wrapper">
                     <div className="rule-record">{description}</div>

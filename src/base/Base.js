@@ -54,29 +54,29 @@ function Base() {
         setActiveTabId(newActiveTabName);
     };
 
-    return (<div id="base">
-        <div className="style">
-            <StyleSelector/>
-        </div>
-        <div className="title">
-            <div>{labels.title}</div>
-        </div>
-        <TabList tabs={tabs} activeTabId={activeTabId} onChangeActiveTab={onChangeActiveTab}/>
-        <Routes>
-            {
-                tabs.map(tab => {
-                    return <Route key={tab.id}
-                                  path={tab.link}
-                                  element={tab.element}/>
-                })
-            }
-
-            <Route path="/narkam" element={<Navigate to={`/narkam/terms`}/>}/>
-            <Route path="/lacink" element={<Navigate to={`/lacink/terms`}/>}/>
-            <Route path="/tarask" element={<Navigate to={`/tarask/terms`}/>}/>
-            <Route path="" element={<Navigate to={`${style}/terms`}/>}/>
-        </Routes>
-    </div>);
+    return (
+        <div id="base" className="display-linebreak">
+            <div className="style">
+                <StyleSelector/>
+            </div>
+            <div className="title">
+                <div>{labels.title}</div>
+            </div>
+            <TabList tabs={tabs} activeTabId={activeTabId} onChangeActiveTab={onChangeActiveTab}/>
+            <Routes>
+                {
+                    tabs.map(tab => {
+                        return <Route key={tab.id}
+                                      path={tab.link}
+                                      element={tab.element}/>
+                    })
+                }
+                <Route path="/narkam" element={<Navigate to={`/narkam/terms`}/>}/>
+                <Route path="/lacink" element={<Navigate to={`/lacink/terms`}/>}/>
+                <Route path="/tarask" element={<Navigate to={`/tarask/terms`}/>}/>
+                <Route path="" element={<Navigate to={`${style}/terms`}/>}/>
+            </Routes>
+        </div>);
 }
 
 export default Base;
