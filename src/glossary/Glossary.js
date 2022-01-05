@@ -21,7 +21,7 @@ function Glossary() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(terms === undefined || terms.length === 0);
 
     const queryParams = new URLSearchParams(location.search);
     const filter = queryParams.get('filter') === null ? '' : queryParams.get('filter');
@@ -36,9 +36,8 @@ function Glossary() {
         setLoading(false);
     };
 
-
     useEffect(() => {
-        if (terms === undefined || terms.length === 0) {
+        if (loading) {
             const termsMap = new Map();
             fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/glossary/1959acad.json')
                 .then(response => response.json())

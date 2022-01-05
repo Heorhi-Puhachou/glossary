@@ -15,15 +15,14 @@ function LinksPage() {
 
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(linkGroups === undefined || linkGroups.length === 0);
+
     const stopLoading = () => {
         setLoading(false);
     };
 
-
-
     useEffect(() => {
-        if (linkGroups === undefined || linkGroups.length === 0) {
+        if (loading) {
             const linksMap = new Map();
             fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/links/1959acad.json')
                 .then(response => response.json())
@@ -45,7 +44,6 @@ function LinksPage() {
                 });
 
         } else {
-            setTimeout(stopLoading, 500);
             setSelectedGroup(linkGroups[0]);
         }
 

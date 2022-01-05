@@ -14,14 +14,15 @@ function StyleGuide() {
 
     const [selectedGroup, setSelectedGroup] = useState('');
     const [dropdownValue, setDropDownValue] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(ruleGroups === undefined || ruleGroups.length === 0);
+
     const stopLoading = () => {
         setLoading(false);
     };
 
 
     useEffect(() => {
-        if (ruleGroups === undefined || ruleGroups.length === 0) {
+        if (loading) {
             const rulesMap = new Map();
             fetch('https://raw.githubusercontent.com/Heorhi-Puhachou/excel_json_parser/main/generated/style/1959acad.json')
                 .then(response => response.json())
@@ -43,7 +44,6 @@ function StyleGuide() {
                 });
 
         } else {
-            setTimeout(stopLoading, 500);
             setSelectedGroup(ruleGroups[0]);
         }
 
