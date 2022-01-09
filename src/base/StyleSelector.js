@@ -25,7 +25,7 @@ export function StyleSelector() {
             <input type="radio"
                    value={constants.TARASK_TAG}
                    name="style"
-                   defaultChecked={style === constants.TARASK_TAG}
+                   checked={style === constants.TARASK_TAG}
                    onChange={() => {
                    }}/>{labels.tarask}
             <input type="radio"
