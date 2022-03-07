@@ -1,10 +1,7 @@
 import React from 'react';
 import './Record.css';
-import {NavLink, useLocation} from "react-router-dom";
 
 export function Record(item, setSelectedItem) {
-    const location = useLocation();
-
     return (
         <div className='record'
 

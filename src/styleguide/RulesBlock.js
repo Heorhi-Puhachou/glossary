@@ -1,3 +1,4 @@
+import React from 'react';
 import Rule from "./Rule";
 import "./RulesBlock.css"
 

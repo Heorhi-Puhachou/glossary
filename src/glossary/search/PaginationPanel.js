@@ -1,3 +1,4 @@
+import React from 'react';
 import './PaginationPanel.css';
 import {useSelector} from "react-redux";
 

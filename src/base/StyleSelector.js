@@ -1,3 +1,4 @@
+import React from 'react';
 import * as constants from './constant';
 import './StyleSelector.css';
 import {useDispatch, useSelector} from "react-redux";
